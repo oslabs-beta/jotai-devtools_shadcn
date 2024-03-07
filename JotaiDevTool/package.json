@@ -57,8 +57,8 @@
     "release:minor": "pnpm run release minor",
     "release:patch": "pnpm run release patch",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "prepare": "husky install"
+    "build-storybook": "storybook build"
+
   },
   "repository": {
     "type": "git",

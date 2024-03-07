@@ -10,11 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "jotai-devtools": "file: ./JotaiDevTool",
     "@emotion/react": "^11.11.4",
     "@react-spring/web": "^9.7.3",
     "antd": "^5.15.1",
     "jotai": "^2.7.0",
+    "jotai-devtools": "file:JotaiDevTool",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "reactflow": "^11.10.4"
