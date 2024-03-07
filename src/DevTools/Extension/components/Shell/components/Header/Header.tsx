@@ -26,7 +26,7 @@ export const Header = React.memo(() => {
       <Flex justify="space-between" align="center" p={10}>
         <Group mr={10}>
           <Title size="h4" sx={logoStyles}>
-            👻&nbsp;Jōtai DevTools
+            👻&nbsp;Jōtai DevToolszzzz
           </Title>
           <Badge color="orange" size="xs">
             Alpha

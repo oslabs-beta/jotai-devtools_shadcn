@@ -1,4 +1,5 @@
 import { StorybookConfig } from '@storybook/react-webpack5';
+import path from 'path';
 const webpack = require('webpack');
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],

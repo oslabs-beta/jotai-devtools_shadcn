@@ -30,6 +30,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
+  ignorePatterns: ['tailwind.config.js'],
   rules: {
     eqeqeq: 'error',
     'no-var': 'error',
