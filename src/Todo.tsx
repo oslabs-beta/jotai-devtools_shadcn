@@ -110,10 +110,10 @@ const customStore = createStore()
 export default function App() {
   return (
     <Provider store={customStore}>
-      <DevTools store={customStore}/>
       <h1>Jōtai</h1>
       <TodoList />
       <Reactflow />
+      <DevTools store={customStore}/>
     </Provider>
   )
 }
