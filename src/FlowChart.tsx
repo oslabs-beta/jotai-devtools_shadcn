@@ -1,12 +1,15 @@
 import React, { useCallback } from 'react';
 import './todoStyles.css';
-import ReactFlow, {
-  useNodesState,
-  useEdgesState,
-  addEdge,
+
+//react flow imports
+import ReactFlow, { 
+  useNodesState, 
+  useEdgesState, 
+  addEdge, 
   MiniMap,
   Controls,
-  Background,
+  Background, 
+  // Panel,
   NodeToolbar,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
@@ -19,11 +22,12 @@ const initialNodes = [
 
 const initialEdges = [
   { id: 'e1-2', source: '1', target: '2' },
+  // { id: 'el1-3', source:'1', target: '3'}
 ];
 
 function Reactflow() {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [ nodes, setNodes, onNodesChange ] = useNodesState(initialNodes);
+  const [ edges, setEdges, onEdgesChange ] = useEdgesState(initialEdges);
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
@@ -31,24 +35,23 @@ function Reactflow() {
   );
 
   return (
-    <div className="flex-container">
-      <div className="reactflow-wrapper">
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          style={{ backgroundColor: 'black', width: '100%', height: '100%' }}
+    <div style={{height: '50vh', width: '50vw', }}>
+      <ReactFlow 
+        nodes={nodes} 
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+        style={{ backgroundColor: 'black' }}
         >
-          <Controls />
-          <MiniMap />
-          <NodeToolbar />
-          <Background color="black" variant="dots" />
-        </ReactFlow>
-      </div>
+      <Controls />
+      <MiniMap />
+      {/* <Panel /> */}
+      <NodeToolbar />
+      <Background color="black" variant="dots" />
+      </ReactFlow>
     </div>
-  );
+  )
 }
 
 export default Reactflow;
