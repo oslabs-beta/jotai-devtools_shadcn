@@ -5,7 +5,8 @@ import { Radio } from 'antd'
 import { Provider, atom, useAtom, useSetAtom } from 'jotai'
 import type { PrimitiveAtom } from 'jotai'
 import { DevTools } from 'jotai-devtools';
-import { createStore } from 'jotai'
+import { createStore } from 'jotai';
+import Reactflow from './FlowChart.tsx';
 
 
 type Todo = {
@@ -112,6 +113,7 @@ export default function App() {
       <DevTools store={customStore}/>
       <h1>Jōtai</h1>
       <TodoList />
+      <Reactflow />
     </Provider>
   )
 }

@@ -9,7 +9,7 @@ import ReactFlow, {
   MiniMap,
   Controls,
   Background, 
-  Panel,
+  // Panel,
   NodeToolbar,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
@@ -25,7 +25,7 @@ const initialEdges = [
   // { id: 'el1-3', source:'1', target: '3'}
 ];
 
-function App() {
+function Reactflow() {
   const [ nodes, setNodes, onNodesChange ] = useNodesState(initialNodes);
   const [ edges, setEdges, onEdgesChange ] = useEdgesState(initialEdges);
 
@@ -35,22 +35,23 @@ function App() {
   );
 
   return (
-    <div style={{ width: '75vw', height: '75vh' }}>
+    <div style={{height: '50vh', width: '50vw', }}>
       <ReactFlow 
         nodes={nodes} 
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
+        style={{ backgroundColor: 'black' }}
         >
       <Controls />
       <MiniMap />
       {/* <Panel /> */}
       <NodeToolbar />
-      <Background variant="dots" gap={12} size={1} />
+      <Background color="black" variant="dots" />
       </ReactFlow>
     </div>
   )
 }
 
-export default App
+export default Reactflow;
