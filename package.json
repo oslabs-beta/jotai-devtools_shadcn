@@ -15,7 +15,6 @@
     "@react-spring/web": "^9.7.3",
     "antd": "^5.15.1",
     "jotai": "^2.7.0",
-    "jotai-devtools": "^0.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "reactflow": "^11.10.4"
