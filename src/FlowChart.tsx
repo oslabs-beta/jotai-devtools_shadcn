@@ -1,7 +1,5 @@
 import React, { useCallback } from 'react';
 import './todoStyles.css';
-
-//react flow imports
 import ReactFlow, { 
   useNodesState, 
   useEdgesState, 
@@ -9,7 +7,6 @@ import ReactFlow, {
   MiniMap,
   Controls,
   Background, 
-  // Panel,
   NodeToolbar,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
@@ -35,23 +32,41 @@ function Reactflow() {
   );
 
   return (
-    <div style={{height: '50vh', width: '50vw', }}>
-      <ReactFlow 
-        nodes={nodes} 
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        style={{ backgroundColor: 'black' }}
+      <div className="flex-container">
+      <div className="reactflow-wrapper">
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          style={{ backgroundColor: 'black', width: '100%', height: '100%' }}
         >
-      <Controls />
-      <MiniMap />
-      {/* <Panel /> */}
-      <NodeToolbar />
-      <Background color="black" variant="dots" />
-      </ReactFlow>
+          <Controls />
+          <MiniMap />
+          <NodeToolbar />
+          <Background color="black" variant="dots" />
+        </ReactFlow>
+      </div>
     </div>
-  )
+  );
+  //   <div style={{height: '50vh', width: '50vw', }}>
+  //     <ReactFlow 
+  //       nodes={nodes} 
+  //       edges={edges}
+  //       onNodesChange={onNodesChange}
+  //       onEdgesChange={onEdgesChange}
+  //       onConnect={onConnect}
+  //       style={{ backgroundColor: 'black' }}
+  //       >
+  //     <Controls />
+  //     <MiniMap />
+  //     {/* <Panel /> */}
+  //     <NodeToolbar />
+  //     <Background color="black" variant="dots" />
+  //     </ReactFlow>
+  //   </div>
+  // )
 }
 
 export default Reactflow;
