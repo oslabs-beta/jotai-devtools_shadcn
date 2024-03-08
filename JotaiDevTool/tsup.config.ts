@@ -37,7 +37,7 @@ const baseConfig: Options = {
   noExternal: ['@tabler/icons-react'],
   platform: 'node',
   outExtension: defaultOutExtension,
-  esbuildPlugins: defaultEsBuildPlugins,
+  esbuildPlugins: defaultEsBuildPlugins || [],
   // // TSUP does not appear to be respecting tsconfig's jsx property
   // // See - https://github.com/egoist/tsup/issues/792
   inject: ['./react-shim.js'],

@@ -1,74 +1,75 @@
-import React, { useRef } from 'react';
-import { Tabs } from '@mantine/core';
-import { useAtomValue } from 'jotai/react';
-import { shellStylesAtom } from '../../../atoms/shell-styles';
-import { TabKeys, shellStyleDefaults } from '../../../constants';
-import { useDevtoolsJotaiStoreOptions } from '../../../internal-jotai-store';
-import { useSelectedShellTab } from './atoms';
-import { AtomViewer } from './components/AtomViewer';
-import { ErrorBoundary } from './components/ErrorBoundary';
-import { Header } from './components/Header';
-import { ShellResizeBar } from './components/ShellResizeBar';
-import { TabsHeader } from './components/TabsHeader';
-import { TimeTravel } from './components/TimeTravel';
-import { shellStyles } from './styles';
+import React from 'react'
+import { Button } from "../../../../../components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../../../../components/ui/card"
+import { Input } from "../../../../../components/ui/input"
+import { Label } from "../../../../../components/ui/label"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../../../../../components/ui/tabs"
 
 export const Shell = () => {
-  const [selectedShellTab, setSelectedShellTab] = useSelectedShellTab();
-
-  const shellRef = useRef<HTMLDivElement>(null);
-
-  // TODO move this to a custom hook
-  const { height } = useAtomValue(
-    shellStylesAtom,
-    useDevtoolsJotaiStoreOptions(),
-  );
-
-  const handleOnTabChange = (value: TabKeys) => setSelectedShellTab(value);
   return (
-    <Tabs
-      keepMounted={false}
-      variant="default"
-      defaultValue={TabKeys.AtomViewer}
-      sx={shellStyles}
-      h={height}
-      mah={shellStyleDefaults.maxHeight}
-      ref={shellRef}
-      className="jotai-devtools-shell"
-      data-testid="jotai-devtools-shell"
-      id="jotai-devtools-shell"
-      value={selectedShellTab}
-      onTabChange={handleOnTabChange}
-    >
-      <ShellResizeBar shellRef={shellRef} />
-      <Header />
-      <ErrorBoundary>
-        <TabsHeader />
-        <Tabs.Panel
-          value={TabKeys.AtomViewer}
-          h="100%"
-          sx={{
-            overflow: 'hidden',
-            // Hide the overlap of this div's bg
-            borderBottomLeftRadius: '7px',
-            borderBottomRightRadius: '7px',
-          }}
-        >
-          <AtomViewer />
-        </Tabs.Panel>
-        <Tabs.Panel
-          value={TabKeys.TimeTravel}
-          h="100%"
-          sx={{
-            overflow: 'hidden',
-            // Hide the overlap of this div's bg
-            borderBottomLeftRadius: '7px',
-            borderBottomRightRadius: '7px',
-          }}
-        >
-          <TimeTravel />
-        </Tabs.Panel>
-      </ErrorBoundary>
+    <Tabs defaultValue="account" className="w-[400px]">
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">
+        <Card>
+          <CardHeader>
+            <CardTitle>Account</CardTitle>
+            <CardDescription>
+              Make changes to your account here. Click save when you're done.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <div className="space-y-1">
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" defaultValue="Pedro Duarte" />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="username">Username</Label>
+              <Input id="username" defaultValue="@peduarte" />
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button>Save changes</Button>
+          </CardFooter>
+        </Card>
+      </TabsContent>
+      <TabsContent value="password">
+        <Card>
+          <CardHeader>
+            <CardTitle>Password</CardTitle>
+            <CardDescription>
+              Change your password here. After saving, you'll be logged out.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <div className="space-y-1">
+              <Label htmlFor="current">Current password</Label>
+              <Input id="current" type="password" />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="new">New password</Label>
+              <Input id="new" type="password" />
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button>Save password</Button>
+          </CardFooter>
+        </Card>
+      </TabsContent>
     </Tabs>
-  );
-};
+  )
+}

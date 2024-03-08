@@ -1,3 +1,4 @@
+import '../../app/globals.css';
 export { useAtomsSnapshot } from './useAtomsSnapshot';
 export { useGotoAtomsSnapshot } from './useGotoAtomsSnapshot';
 export { useAtomsDebugValue } from './useAtomsDebugValue';
