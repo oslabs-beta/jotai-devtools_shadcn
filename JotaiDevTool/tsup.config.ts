@@ -42,7 +42,11 @@ const baseConfig: Options = {
   // // TSUP does not appear to be respecting tsconfig's jsx property
   // // See - https://github.com/egoist/tsup/issues/792
   inject: ['./react-shim.js'],
+  injectStyle: true
 };
+
+// injectStyle?: boolean | ((css: string, fileId: string) => string);
+
 
 const cjsConfig: Options = {
   ...baseConfig,
