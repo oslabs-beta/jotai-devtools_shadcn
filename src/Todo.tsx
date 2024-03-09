@@ -1,3 +1,4 @@
+import React from 'react';
 import type { FormEvent } from 'react'
 import { CloseOutlined } from '@ant-design/icons'
 import { a, useTransition } from '@react-spring/web'
@@ -84,7 +85,7 @@ const Filtered = (props: FilteredType) => {
 }
 
 const TodoList = () => {
-  // const [, setTodos] = useAtom(todosAtom)
+  // const [tasks, ] = useAtom(todosAtom)
   const setTodos = useSetAtom(todosAtom)
   const remove: RemoveFn = (todo) =>
     setTodos((prev) => prev.filter((item) => item !== todo))
@@ -105,7 +106,7 @@ const TodoList = () => {
   )
 }
 
-const customStore = createStore()
+const customStore = createStore();
 
 export default function App() {
   return (
@@ -117,3 +118,7 @@ export default function App() {
     </Provider>
   )
 }
+
+
+
+

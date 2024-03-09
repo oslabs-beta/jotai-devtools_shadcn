@@ -1,13 +1,10 @@
 import React, { useCallback } from 'react';
-import './todoStyles.css';
 import ReactFlow, { 
   useNodesState, 
   useEdgesState, 
   addEdge, 
-  MiniMap,
   Controls,
   Background, 
-  NodeToolbar,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import 'reactflow/dist/base.css';
@@ -21,7 +18,7 @@ const nodeTypes = {
 
 const initialNodes = [
   { id: '1', type: 'custom', position: { x: 0, y: 0 }, data: { label: '1' } },
-  { id: '2', type: 'custom', position: { x: 0, y: 100 }, data: { label: '2', emoji: '😎' } },
+  { id: '2', type: 'custom', position: { x: 0, y: 100 }, data: { label: '2' } },
   { id: '3', type: 'custom', position: { x: 0, y: 200 }, data: { label: '3' } },
 ];
 
@@ -41,8 +38,7 @@ function Reactflow() {
   );
 
   return (
-      <div className="flex-container">
-      <div className="reactflow-wrapper">
+      <div style={{ width: '90%', height: '90%' }}>
         <ReactFlow
           fitView
           nodes={nodes}
@@ -51,14 +47,13 @@ function Reactflow() {
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
-          style={{ backgroundColor: 'black', width: '100%', height: '100%' }}
+          style={{ backgroundImage: "linear-gradient(to bottom, #758696, #252B37)"  }}
+
         >
           <Controls />
-          <NodeToolbar />
-          <Background color="black" variant="dots" />
+          <Background color="#252B37" variant='lines' />
         </ReactFlow>
       </div>
-    </div>
   );
 }
 

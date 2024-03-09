@@ -35,13 +35,13 @@ export const TabsHeader = React.memo(() => {
         )}
       </Tabs.Tab>
       {/* TODO Add these features */}
-      {/* <Tabs.Tab
+      <Tabs.Tab
         value={TabKeys.AtomGraph}
-        icon={<IconVectorTriangle size={14} />}
-        disabled
+        // icon={<IconVectorTriangle size={14} />}
+        // disabled
       >
         Atom Graph
-      </Tabs.Tab> */}
+      </Tabs.Tab>
     </Tabs.List>
   );
 });

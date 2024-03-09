@@ -12,6 +12,8 @@ import { ShellResizeBar } from './components/ShellResizeBar';
 import { TabsHeader } from './components/TabsHeader';
 import { TimeTravel } from './components/TimeTravel';
 import { shellStyles } from './styles';
+import  ReactFlow  from './components/AtomGraph/Graph';
+
 
 export const Shell = () => {
   const [selectedShellTab, setSelectedShellTab] = useSelectedShellTab();
@@ -67,6 +69,18 @@ export const Shell = () => {
           }}
         >
           <TimeTravel />
+        </Tabs.Panel>
+        <Tabs.Panel
+          value={TabKeys.AtomGraph}
+          h="100%"
+          sx={{
+            overflow: 'hidden',
+            // Hide the overlap of this div's bg
+            borderBottomLeftRadius: '7px',
+            borderBottomRightRadius: '7px',
+          }}
+        >
+          <ReactFlow />
         </Tabs.Panel>
       </ErrorBoundary>
     </Tabs>

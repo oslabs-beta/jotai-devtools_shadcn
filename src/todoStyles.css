@@ -114,3 +114,15 @@ form{
   align-items: center;
   padding: 10px;
 }
+
+
+.CustomNode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+  padding: 1rem;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+}
