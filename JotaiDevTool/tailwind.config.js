@@ -4,7 +4,7 @@ module.exports = {
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
+    // './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
   prefix: "",
@@ -74,4 +74,5 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
+  //do we need to require in tailwind by istelf?
 }

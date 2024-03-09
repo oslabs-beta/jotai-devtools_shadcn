@@ -1,6 +1,7 @@
 import { replace } from 'esbuild-plugin-replace';
 import { Options, defineConfig } from 'tsup';
 
+
 const defaultOutExtension: Options['outExtension'] = ({ format }) => {
   return {
     js: `.${format}.js`,
