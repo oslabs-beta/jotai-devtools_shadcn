@@ -103,7 +103,7 @@ export const Shell = () => {
             value="atom-viewer"
             onClick={() => setSelectedTab('atom-viewer')}
             className={cn(
-              'flex-grow-1 px-4 py-2 text-sm font-medium focus:outline-none',
+              'px-4 py-2 text-sm font-medium focus:outline-none',
               selectedTab === 'atom-viewer'
                 ? 'text-black border-b-2 !border-black'
                 : 'text-gray-700',
