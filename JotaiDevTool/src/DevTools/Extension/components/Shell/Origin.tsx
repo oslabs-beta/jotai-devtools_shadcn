@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 import React, { useRef } from 'react';
 import { Tabs } from '@mantine/core';
 import { useAtomValue } from 'jotai/react';
@@ -84,7 +78,7 @@ export const Shell = () => {
 
 
 //VICTORIA OLD CODE
-<AtomViewer />
+{/* <AtomViewer />
 </Tabs.Panel>
 <Tabs.Panel
   value={TabKeys.TimeTravel}
@@ -109,4 +103,4 @@ export const Shell = () => {
   }}
 >
   <ReactFlow />
-</Tabs.Panel>
+</Tabs.Panel> */}
