@@ -1,6 +1,7 @@
 import { replace } from 'esbuild-plugin-replace';
 import { Options, defineConfig } from 'tsup';
 
+
 const defaultOutExtension: Options['outExtension'] = ({ format }) => {
   return {
     js: `.${format}.js`,
@@ -37,11 +38,15 @@ const baseConfig: Options = {
   noExternal: ['@tabler/icons-react'],
   platform: 'node',
   outExtension: defaultOutExtension,
-  esbuildPlugins: defaultEsBuildPlugins,
+  esbuildPlugins: defaultEsBuildPlugins || [],
   // // TSUP does not appear to be respecting tsconfig's jsx property
   // // See - https://github.com/egoist/tsup/issues/792
   inject: ['./react-shim.js'],
+  injectStyle: true
 };
+
+// injectStyle?: boolean | ((css: string, fileId: string) => string);
+
 
 const cjsConfig: Options = {
   ...baseConfig,

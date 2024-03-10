@@ -1,7 +1,11 @@
 {
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "include": [
     "src/**/*",
@@ -10,7 +14,8 @@
     "types",
     "tsup.config.ts",
     "jest",
-    "@testing-library/jest-dom"
+    "@testing-library/jest-dom",
+    "./tailwind.config.js"
   ],
   "exclude": ["node_modules", "dist"]
 }
