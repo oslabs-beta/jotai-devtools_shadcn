@@ -1,4 +1,6 @@
 import { InternalDevTools } from './DevTools';
+import '../app/globals.css';
+// import '../app/output.css';
 export type { DevToolsProps } from './DevTools';
 
 // This is a workaround to make DevTools tree-shakable in production builds
