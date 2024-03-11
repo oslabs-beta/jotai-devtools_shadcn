@@ -14,10 +14,7 @@ import {
   TabsTrigger,
 } from '../../../../../components/ui/tabs';
 import { cn } from '../../../../../lib/utils';
-import { tabs } from './tabs';
-
-
-
+import { tabs } from './TabIcons';
 
 export const Shell = () => {
   const [selectedTab, setSelectedTab] = useState('atom-viewer');
@@ -45,17 +42,18 @@ export const Shell = () => {
       <ShellResizeBar shellRef={shellRef} />
       <Header />
       <ErrorBoundary>
-        <TabsList className="flex w-full justify-start">
+        <TabsList className=" flex w-full justify-start !bg-white border-b-2 border-gray-300">
           {tabs.map((tab) => (
             <TabsTrigger
               key={tab.value}
               value={tab.value}
               onClick={() => setSelectedTab(tab.value)}
               className={cn(
-                'flex items-center px-4 py-2 text-sm font-medium focus:outline-none',
+                'flex items-center px-4 py-2 text-sm font-medium focus:outline-none hover:bg-gray-200 border-b-2 border-gray-300',
                 selectedTab === tab.value
                   ? 'text-black border-b-2 !border-black'
-                  : 'text-gray-700',
+                  : 'bg-white text-gray-700',
+                'rounded-t-md rounded-b-none -mb-1',
               )}
             >
               {tab.icon}
@@ -66,9 +64,7 @@ export const Shell = () => {
         <div
           style={{
             height: '100%',
-            overflow: 'auto',
-            borderBottomLeftRadius: '7px',
-            borderBottomRightRadius: '7px',
+            overflow: 'hidden',
           }}
         >
           {tabs.map((tab) => (
