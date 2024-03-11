@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ActionIcon } from '@mantine/core';
 import { useAtom, useSetAtom } from 'jotai/react';
 import { Store } from '../../types';
 import { isShellOpenAtom } from '../atoms/is-shell-open-atom';
@@ -9,6 +8,7 @@ import { useDevtoolsJotaiStoreOptions } from '../internal-jotai-store';
 import { logo } from './assets/logo';
 import { Shell } from './components/Shell';
 import useSyncSnapshotHistory from './components/Shell/components/TimeTravel/useSyncSnapshotHistory';
+import { Button } from '../../../components/ui/button';
 
 export const shellTriggerButtonClassName = 'jotai-devtools-trigger-button';
 
@@ -18,18 +18,32 @@ const ShellTriggerButton = React.forwardRef<HTMLButtonElement>((_, ref) => {
     useDevtoolsJotaiStoreOptions(),
   );
 
+
+ 
+
   return (
-    <ActionIcon
-      variant="filled"
-      color={useThemeMode('dark', 'gray.3')}
+    <Button className={`${shellTriggerButtonClassName} bg-black m-5`}
       onClick={() => setIsShellOpen(true)}
       ref={ref}
-      title="Open Jotai Devtools-victoria was here"
-      className={shellTriggerButtonClassName}
-    >
+      title="Open Jotai Devtools-test"
+      >
       <img src={logo} alt="Jotai Mascot" />
-    </ActionIcon>
+    </Button>
   );
+
+
+//   return (
+//     <ActionIcon
+//       variant="filled"
+//       color={useThemeMode('dark', 'gray.3')}
+//       onClick={() => setIsShellOpen(true)}
+//       ref={ref}
+//       title="Open Jotai Devtools-victoria was here"
+//       className={shellTriggerButtonClassName}
+//     >
+//       <img src={logo} alt="Jotai Mascot" />
+//     </ActionIcon>
+//   );
 });
 
 export type ExtensionProps = {

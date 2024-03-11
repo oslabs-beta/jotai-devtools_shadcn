@@ -146,7 +146,7 @@ const searchInputWrapperStyles: Sx = {
   position: 'sticky',
   top: 0,
   zIndex: 10,
-  background: 'white', // Add a background color to the search container
+  background: 'white',
   paddingTop: 10,
   paddingBottom: 10,
 };
@@ -179,9 +179,7 @@ const SearchAtoms = React.memo(() => {
 
 const atomItemsWrapperStyle = { 
   overflow: 'auto', 
-  // marginTop: '10px', 
-  // paddingTop: '40px', // Add padding to create space for the search container
-  boxSizing: 'border-box', // Ensure padding is included in the element's total height
+  boxSizing: 'border-box',
 };
 
 export const AtomList = () => {

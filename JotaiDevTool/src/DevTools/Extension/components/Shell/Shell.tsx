@@ -7,14 +7,12 @@ import { useDevtoolsJotaiStoreOptions } from '../../../internal-jotai-store';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Header } from './components/Header';
 import { ShellResizeBar } from './components/ShellResizeBar';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '../../../../../components/ui/tabs';
+import {Tabs,TabsContent,TabsList,TabsTrigger,} from '../../../../../components/ui/tabs';
 import { cn } from '../../../../../lib/utils';
-import { tabs } from './TabIcons';
+import { tabs } from './Tab-Content';
+
+
+
 
 export const Shell = () => {
   const [selectedTab, setSelectedTab] = useState('atom-viewer');
@@ -42,7 +40,8 @@ export const Shell = () => {
       <ShellResizeBar shellRef={shellRef} />
       <Header />
       <ErrorBoundary>
-        <TabsList className=" flex w-full justify-start !bg-white border-b-2 border-gray-300">
+        
+        <TabsList className=' flex w-full justify-start !bg-white border-b-2 border-gray-300 rounded-t-md rounded-b-none'>
           {tabs.map((tab) => (
             <TabsTrigger
               key={tab.value}
@@ -53,7 +52,7 @@ export const Shell = () => {
                 selectedTab === tab.value
                   ? 'text-black border-b-2 !border-black'
                   : 'bg-white text-gray-700',
-                'rounded-t-md rounded-b-none -mb-1',
+                  'rounded-t-md rounded-b-none -mb-1',
               )}
             >
               {tab.icon}
