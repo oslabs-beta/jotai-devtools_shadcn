@@ -13,8 +13,8 @@
     "@emotion/react": "^11.11.4",
     "@react-spring/web": "^9.7.3",
     "antd": "^5.15.1",
+    "atomic-devtools": "^1.1.59",
     "jotai": "^2.7.0",
-    "jotai-devtools": "file:JotaiDevTool",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "reactflow": "^11.10.4"

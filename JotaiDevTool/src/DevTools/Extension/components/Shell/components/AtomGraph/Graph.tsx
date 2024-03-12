@@ -54,8 +54,8 @@ function Reactflow() {
                     type: 'custom',
                     // x and y position creates a grid layout based on index of the atom in values
                     position: {
-                      x: i % 10 * 100,
-                      y: Math.floor(i/10) * 100,
+                      x: i % 10 * 125,
+                      y: Math.floor(i/10) * 125,
                     },
                     data: { label: atomToPrintable(atom) }
                   });
