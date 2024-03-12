@@ -24,7 +24,7 @@ const ShellTriggerButton = React.forwardRef<HTMLButtonElement>((_, ref) => {
       color={useThemeMode('dark', 'gray.3')}
       onClick={() => setIsShellOpen(true)}
       ref={ref}
-      title="Open Jotai Devtools-victoria was here"
+      title="Open Jotai Devtools"
       className={shellTriggerButtonClassName}
     >
       <img src={logo} alt="Jotai Mascot" />

@@ -5,8 +5,8 @@ function CustomNode({ data }) {
   return (
     <div>
         <div className="CustomNode" style={{
-          color: "#252B37",
-          backgroundColor: '#E4F0FB',
+          color: "#F5F5F5",
+          backgroundColor: '#252B37',
           borderRadius: "50%",
           width: "2rem",
           height: "2rem",
