@@ -1,5 +1,5 @@
 import '../../../../../app/globals.css';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import { useAtomValue } from 'jotai/react';
 import { shellStylesAtom } from '../../../atoms/shell-styles';
 import { shellStyleDefaults } from '../../../constants';
@@ -12,11 +12,14 @@ import { Button } from '../../../../../components/ui/button';
 import { cn } from '../../../../../lib/utils';
 import { tabs } from './Tab-Content';
 import { useToggleDarkMode } from '../../../hooks/useDarkMode'
+import { DarkModeContext } from '../../../../../components/ui/DarkModeContext';
+
 
 
 export const Shell = () => {
   const [selectedTab, setSelectedTab] = useState('atom-viewer');
-  const [darkMode, toggleDarkMode] = useToggleDarkMode(false);
+  // const [darkMode, toggleDarkMode] = useToggleDarkMode(false);
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
   const shellRef = useRef<HTMLDivElement>(null);
 
@@ -27,7 +30,7 @@ export const Shell = () => {
   );
 
   return (
-    <div className={`${darkMode ? "dark" : ""}`}>
+    <div className='dark:bg-slate-900'>
       <Button
       className="absolute w-16 h-16 bottom-16 right-16 bg-neutral-900 dark:bg-white"
       onClick={() => {toggleDarkMode()}}
@@ -46,10 +49,12 @@ export const Shell = () => {
       id="jotai-devtools-shell"
     >
       <ShellResizeBar shellRef={shellRef} />
-      <Header />
+      <Header 
+
+      />
       <ErrorBoundary>
         
-        <TabsList className=' flex justify-start !bg-white border-b-2 border-gray-300 rounded-t-md rounded-b-none dark:bg-slate-800 dark:border-gray-400'>
+        <TabsList className=' flex justify-start bg-white border-b-2 border-gray-300 rounded-t-md rounded-b-none dark:bg-slate-800 dark:border-gray-400'>
           {tabs.map((tab) => (
             <TabsTrigger
               key={tab.value}
@@ -82,6 +87,6 @@ export const Shell = () => {
         </div>
       </ErrorBoundary>
     </Tabs>
-    </div>
+  </div>
   );
 };
