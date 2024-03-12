@@ -11,7 +11,7 @@ export const tabs = [
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-4 w-4 mr-2 stroke-current text-gray-500"
+        className="h-4 w-4 mr-2 stroke-current text-gray-500 dark:text-gray-300"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth="2"
@@ -31,7 +31,7 @@ export const tabs = [
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-4 w-4 mr-2 stroke-current text-gray-500"
+        className="h-4 w-4 mr-2 stroke-current text-gray-500 dark:text-gray-300"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth="2"
@@ -71,7 +71,7 @@ export const tabs = [
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-4 w-4 mr-2 fill-current text-gray-500"
+        className="h-4 w-4 mr-2 fill-current text-gray-500 dark:text-gray-300"
         viewBox="0 0 16 16"
       >
         <path

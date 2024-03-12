@@ -8,14 +8,15 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 import { Header } from './components/Header';
 import { ShellResizeBar } from './components/ShellResizeBar';
 import {Tabs,TabsContent,TabsList,TabsTrigger,} from '../../../../../components/ui/tabs';
+import { Button } from '../../../../../components/ui/button';
 import { cn } from '../../../../../lib/utils';
 import { tabs } from './Tab-Content';
-
-
+import { useToggleDarkMode } from '../../../hooks/useDarkMode'
 
 
 export const Shell = () => {
   const [selectedTab, setSelectedTab] = useState('atom-viewer');
+  const [darkMode, toggleDarkMode] = useToggleDarkMode(false);
 
   const shellRef = useRef<HTMLDivElement>(null);
 
@@ -26,6 +27,13 @@ export const Shell = () => {
   );
 
   return (
+    <div className={`${darkMode ? "dark" : ""}`}>
+      <Button
+      className="absolute w-16 h-16 bottom-16 right-16 bg-neutral-900 dark:bg-white"
+      onClick={() => {toggleDarkMode()}}
+    >
+      {darkMode ? 'Light Mode' : 'Dark Mode'}
+    </Button>
     <Tabs
       defaultValue={selectedTab}
       className="flex w-full flex-col"
@@ -41,17 +49,17 @@ export const Shell = () => {
       <Header />
       <ErrorBoundary>
         
-        <TabsList className=' flex w-full justify-start !bg-white border-b-2 border-gray-300 rounded-t-md rounded-b-none'>
+        <TabsList className=' flex justify-start !bg-white border-b-2 border-gray-300 rounded-t-md rounded-b-none dark:bg-slate-800 dark:border-gray-400'>
           {tabs.map((tab) => (
             <TabsTrigger
               key={tab.value}
               value={tab.value}
               onClick={() => setSelectedTab(tab.value)}
               className={cn(
-                'flex items-center px-4 py-2 text-sm font-medium focus:outline-none hover:bg-gray-200 border-b-2 border-gray-300',
+                'flex items-center px-4 py-2 text-sm font-medium focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-700 border-b-2 border-gray-400',
                 selectedTab === tab.value
-                  ? 'text-black border-b-2 !border-black'
-                  : 'bg-white text-gray-700',
+                  ? 'text-black dark:text-gray-100 border-b-2 border-black dark:border-white'
+                  : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-white',
                   'rounded-t-md rounded-b-none -mb-1',
               )}
             >
@@ -74,5 +82,6 @@ export const Shell = () => {
         </div>
       </ErrorBoundary>
     </Tabs>
+    </div>
   );
 };

@@ -131,9 +131,9 @@
 
 
 // ----- Migrated code -----
-
+import '../../../../../../../../../app/globals.css';
 import * as React from 'react';
-import { Box, Group, Sx, Text, TextInput } from '@mantine/core';
+// import { Box, Group, Sx, Text, TextInput } from '@mantine/core';
 import { IconAlertCircle } from '@tabler/icons-react';
 import { useAtom, useAtomValue } from 'jotai/react';
 import { useSyncSnapshotValuesToAtom } from '../../../../../../../hooks/useAtomsSnapshots';
@@ -141,15 +141,17 @@ import { useDevtoolsJotaiStoreOptions } from '../../../../../../../internal-jota
 import { atomToPrintable } from '../../../../../../../utils';
 import { ActionListItem } from '../../../ActionListItem';
 import { filteredValuesAtom, searchInputAtom, selectedAtomAtom } from '../../atoms';
+import { Label } from '../../../../../../../../../components/ui/label'
+import { Input } from '../../../../../../../../../components/ui/input'
 
-const searchInputWrapperStyles: Sx = {
-  position: 'sticky',
-  top: 0,
-  zIndex: 10,
-  background: 'white',
-  paddingTop: 10,
-  paddingBottom: 10,
-};
+// const searchInputWrapperStyles: Sx = {
+//   position: 'sticky',
+//   top: 0,
+//   zIndex: 10,
+//   background: 'white',
+//   paddingTop: 10,
+//   paddingBottom: 10,
+// };
 
 const SearchAtoms = React.memo(() => {
   const [userInput, setUserInput] = useAtom(
@@ -165,22 +167,34 @@ const SearchAtoms = React.memo(() => {
   };
 
   return (
-    <Box sx={searchInputWrapperStyles}>
-      <TextInput
-        label="Search"
-        placeholder="atom debug label"
-        value={userInput}
-        onChange={handleOnChange}
-        id="jotai-devtools-atom-debug-search-input"
-      />
-    </Box>
+    // <Box sx={searchInputWrapperStyles}>
+    //   <TextInput
+    //     label="Search"
+    //     placeholder="atom debug label"
+    //     value={userInput}
+    //     onChange={handleOnChange}
+    //     id="jotai-devtools-atom-debug-search-input"
+    //   />
+    // </Box>
+  <div className="sticky top-0 z-10 bg-white py-4 ">
+    <Label htmlFor="search" >Search</Label>
+    <Input
+  id="search"
+  placeholder="atom debug label"
+  value={userInput}
+  onChange={handleOnChange}
+  className='focus:border'
+/>
+  </div>
   );
 });
 
-const atomItemsWrapperStyle = { 
-  overflow: 'auto', 
-  boxSizing: 'border-box',
-};
+// const atomItemsWrapperStyle = { 
+//   overflow: 'auto', 
+//   boxSizing: 'border-box',
+// };
+
+const atomItemsWrapperStyle = "overflow-auto box-border";
 
 export const AtomList = () => {
   useSyncSnapshotValuesToAtom();
@@ -236,17 +250,32 @@ export const AtomList = () => {
 
   const noResultsFound = !values.length;
 
+  // return (
+  //   <>
+  //     <SearchAtoms />
+  //     <Box sx={atomItemsWrapperStyle}>{atomItems}</Box>
+  //     {noResultsFound && (
+  //       <Group mt={20} position="center">
+  //         <IconAlertCircle size={16} />
+  //         <Text fz="sm" ml={0} data-testid="atom-list-no-atoms-found-message">
+  //           No Atoms found!
+  //         </Text>
+  //       </Group>
+  //     )}
+  //   </>
+  // );
+
   return (
     <>
       <SearchAtoms />
-      <Box sx={atomItemsWrapperStyle}>{atomItems}</Box>
+      <div className="overflow-auto box-border">{atomItems}</div>
       {noResultsFound && (
-        <Group mt={20} position="center">
-          <IconAlertCircle size={16} />
-          <Text fz="sm" ml={0} data-testid="atom-list-no-atoms-found-message">
+        <div className="mt-5 flex items-center justify-center">
+          <IconAlertCircle className="w-4 h-4" />
+          <span className="ml-2 text-sm" data-testid="atom-list-no-atoms-found-message">
             No Atoms found!
-          </Text>
-        </Group>
+          </span>
+        </div>
       )}
     </>
   );
