@@ -16,11 +16,11 @@ export const AtomMetaDetails = React.memo(
     isAtomPrivate,
   }: AtomMetaDetailsProps): JSX.Element => {
     return (
-      <Box>
+      <Box className='dark:text-gray-200'>
         <Text fw="bold" mb={10}>
           Meta
         </Text>
-        <MetaInfo label="Debug Label" value={debugLabel} />
+        <MetaInfo label="Debug Label" value={debugLabel}/>
         <MetaInfo label="Value type" value={atomValueType} />
         {isAtomPrivate && (
           <MetaInfo label="Private" value={'Yes'} color={'red'} />

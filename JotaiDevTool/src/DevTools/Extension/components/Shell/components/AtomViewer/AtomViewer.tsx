@@ -40,30 +40,20 @@
 //--- MIGRATED CODE TO SHADCN 
 
 import * as React from 'react';
-import { Flex } from '@mantine/core';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
-import { Separator } from '@radix-ui/react-separator';
 import { AtomDetail } from './components/AtomDetail';
 import { AtomList } from './components/AtomList';
 
-// const atomListWrapperStyles = {
-//   background: 'dark' ? '#1A1B1E' : '#F1F3F5',
-// };
+
 
 export const AtomViewer = React.memo(() => {
   return (
-    <Flex direction="row" h="100%">
+    <div className="flex flex-row h-full">
       <ScrollArea.Root className="w-1/2 h-full">
         <ScrollArea.Viewport className="h-full">
-          <Flex
-            px={10}
-            pb={10}
-            h="100%"
-            direction="column"
-            className="border-r border-gray-400"
-          >
+          <div className="px-4 pb-4 h-full flex flex-col border-r border-gray-400">
             <AtomList />
-          </Flex>
+          </div>
         </ScrollArea.Viewport>
         <ScrollArea.Scrollbar
           orientation="vertical"
@@ -76,9 +66,9 @@ export const AtomViewer = React.memo(() => {
 
       <ScrollArea.Root className="w-1/2 h-full">
         <ScrollArea.Viewport className="h-full">
-          <Flex p={10} h="100%" direction="column" pos="relative" className="bg-white dark:bg-gray-900">
+          <div className="p-1 h-full flex flex-col relative bg-white dark:bg-gray-900">
             <AtomDetail />
-          </Flex>
+          </div>
         </ScrollArea.Viewport>
         <ScrollArea.Scrollbar
           orientation="vertical"
@@ -88,6 +78,6 @@ export const AtomViewer = React.memo(() => {
         </ScrollArea.Scrollbar>
         <ScrollArea.Corner className="bg-gray-200 dark:bg-gray-700" />
       </ScrollArea.Root>
-    </Flex>
+    </div>
   );
 });

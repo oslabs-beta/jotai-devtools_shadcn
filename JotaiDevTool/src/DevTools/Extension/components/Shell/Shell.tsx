@@ -1,5 +1,5 @@
 import '../../../../../app/globals.css';
-import React, { useRef, useState, useContext } from 'react';
+import React, { useRef, useState} from 'react';
 import { useAtomValue } from 'jotai/react';
 import { shellStylesAtom } from '../../../atoms/shell-styles';
 import { shellStyleDefaults } from '../../../constants';
@@ -10,7 +10,7 @@ import { ShellResizeBar } from './components/ShellResizeBar';
 import {Tabs,TabsContent,TabsList,TabsTrigger,} from '../../../../../components/ui/tabs';
 import { cn } from '../../../../../lib/utils';
 import { tabs } from './Tab-Content';
-import { useDarkModeValue, useSetDarkMode } from '../../../atoms/dark-mode';
+import { useDarkModeValue } from '../../../atoms/dark-mode';
 
 export const Shell = () => {
   const [selectedTab, setSelectedTab] = useState('atom-viewer');

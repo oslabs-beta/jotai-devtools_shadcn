@@ -20,7 +20,7 @@ export const DisplayAtomDetails = ({ atom }: DisplayAtomDetailsProps) => {
 
   return (
     <Stack h="auto">
-      <Title size="h3">Atom Details</Title>
+      <Title size="h3" className='dark:text-gray-200'>Atom Details</Title>
       <AtomMetaDetails
         debugLabel={atomToPrintable(atom)}
         atomValueType={atomValueType}
