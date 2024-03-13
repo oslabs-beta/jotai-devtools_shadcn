@@ -5,9 +5,9 @@ import { a, useTransition } from '@react-spring/web'
 import { Radio } from 'antd'
 import { Provider, atom, useAtom, useSetAtom } from 'jotai'
 import type { PrimitiveAtom } from 'jotai'
-import { DevTools } from 'jotai-devtools';
 import { createStore } from 'jotai';
 import Reactflow from './FlowChart.tsx';
+import { useAtomicDevtool, AtomicDebugger } from 'atomic-devtools';
 
 
 type Todo = {
@@ -86,17 +86,21 @@ const Filtered = (props: FilteredType) => {
 
 const TodoList = () => {
   // const [tasks, ] = useAtom(todosAtom)
+  const [filterAtom, updatefilterAtom] = useAtomicDevtool(filterAtom, 'filterAtom');
+  const [todosAtom, updatetodosAtom] = useAtomicDevtool(todosAtom, 'todosAtom');
+  
   const setTodos = useSetAtom(todosAtom)
+  const newTodoAtom = atom<Todo>({ title, completed: false });
   const remove: RemoveFn = (todo) =>
-    setTodos((prev) => prev.filter((item) => item !== todo))
+  setTodos((prev) => prev.filter((item) => item !== todo))
   const add = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const title = e.currentTarget.inputTitle.value;
     e.currentTarget.inputTitle.value = '';
-    const newTodoAtom = atom<Todo>({ title, completed: false });
     newTodoAtom.debugLabel = `todoAtom-${title}`;
     setTodos((prev) => [...prev, newTodoAtom]);
   }
+  const [newTodoAtoms, updatenewTodoAtom] = useAtomicDevtool(newTodoAtom, 'newTodoAtom');
   return (
     <form onSubmit={add}>
       <Filter />
@@ -110,13 +114,14 @@ const customStore = createStore();
 
 export default function App() {
   return (
-    <Provider store={customStore}>
-      <DevTools store={customStore}/>
-      <h1>Jōtai</h1>
-      <TodoList />
-      <Reactflow />
-    </Provider>
-  )
+    <AtomicDebugger>
+      <Provider store={customStore}>
+        <h1>Jōtai</h1>
+        <TodoList />
+        <Reactflow />
+      </Provider>
+    </AtomicDebugger>
+    )
 }
 
 

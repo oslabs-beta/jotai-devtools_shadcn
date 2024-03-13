@@ -19,6 +19,7 @@ import {
   TabsTrigger,
 } from '../../../../../components/ui/tabs';
 import { cn } from '../../../../../lib/utils';
+
 export const Shell = () => {
   const [selectedTab, setSelectedTab] = useState('atom-viewer');
 

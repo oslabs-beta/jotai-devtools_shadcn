@@ -5,11 +5,18 @@ function CustomNode({ data }) {
   return (
     <div>
         <div className="CustomNode" style={{
-          color: "#252B37",
-          backgroundColor: '#E4F0FB',
+          color: "#F5F5F5",
+          fontSize: "1em",
+          textAlign: "center",
+          textOverflow: "ellipsis",
+          overflow: "hidden",
+          wordBreak: "break-all",
+          backgroundColor: '#252B37',
+          //circle: 50%, squoval: 40%
           borderRadius: "50%",
-          width: "2rem",
-          height: "2rem",
+          width: "6em",
+          height: "6em",
+          padding: "5%",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
