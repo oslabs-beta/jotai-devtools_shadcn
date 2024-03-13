@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import ReactFlow, { 
   useReactFlow,
   useNodesState, 
@@ -72,13 +72,17 @@ function Reactflow() {
   const [ nodes, setNodes, onNodesChange ] = useNodesState(atomNodes);
   const [ edges, setEdges, onEdgesChange ] = useEdgesState(initialEdges);
 
+  useEffect(() => {
+    setNodes(atomNodes);
+  }, [values]);
+
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
     [setEdges],
   );
     
       return (
-        <div style={{ width: '90%', height: '90%' }}>
+        <div style={{ width: '98%', height: '98%' }}>
             <ReactFlow
               fitView
               nodes={nodes}
