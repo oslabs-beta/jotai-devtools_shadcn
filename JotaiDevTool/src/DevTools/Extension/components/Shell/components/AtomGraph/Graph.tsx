@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
 import ReactFlow, { 
-  useReactFlow,
   useNodesState, 
   useEdgesState, 
   addEdge, 
@@ -10,7 +9,7 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import 'reactflow/dist/base.css';
 import CustomNode from './CustomNode';
-import { useAtomValue, useAtom } from 'jotai/react';
+import { useAtomValue } from 'jotai/react';
 import { valuesAtom } from '../../../../../atoms/values-atom';
 import { atomWithDefault } from 'jotai/vanilla/utils';
 import { ValuesAtomTuple } from 'src/types';

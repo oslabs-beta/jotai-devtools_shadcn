@@ -1,7 +1,19 @@
 import React, { memo } from 'react';
 import { Background, Handle, Position } from 'reactflow';
 
-function CustomNode({ data }) {
+type CustomNodeData = {
+  label: string;
+  //possibility of adding additional relevant information to the node
+  value?: string;
+  valueType?: string;
+  dependents?: string;
+};
+
+type CustomNodeProps = {
+  data: CustomNodeData;
+};
+
+function CustomNode({ data }: CustomNodeProps) {
   return (
     <div>
         <div className="CustomNode" style={{
