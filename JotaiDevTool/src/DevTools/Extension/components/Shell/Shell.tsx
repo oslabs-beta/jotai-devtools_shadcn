@@ -1,30 +1,25 @@
 import '../../../../../app/globals.css';
-import React, { useRef, useState } from 'react';
-// import { Tabs } from '@mantine/core';
+import React, { useRef, useState, useContext } from 'react';
 import { useAtomValue } from 'jotai/react';
 import { shellStylesAtom } from '../../../atoms/shell-styles';
-import { TabKeys, shellStyleDefaults } from '../../../constants';
+import { shellStyleDefaults } from '../../../constants';
 import { useDevtoolsJotaiStoreOptions } from '../../../internal-jotai-store';
-import { AtomViewer } from './components/AtomViewer';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Header } from './components/Header';
 import { ShellResizeBar } from './components/ShellResizeBar';
-import { TimeTravel } from './components/TimeTravel';
-import { shellStyles } from './styles';
-import  ReactFlow  from './components/AtomGraph/Graph';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '../../../../../components/ui/tabs';
+import {Tabs,TabsContent,TabsList,TabsTrigger,} from '../../../../../components/ui/tabs';
+import { Button } from '../../../../../components/ui/button';
 import { cn } from '../../../../../lib/utils';
+import { tabs } from './Tab-Content';
+import { useToggleDarkMode } from '../../../hooks/useDarkMode'
+import { DarkModeContext } from '../../../../../components/ui/DarkModeContext';
+
+
 
 export const Shell = () => {
   const [selectedTab, setSelectedTab] = useState('atom-viewer');
-
-  // export const Shell = () => {
-  //   const [selectedShellTab, setSelectedShellTab] = useSelectedShellTab();
+  // const [darkMode, toggleDarkMode] = useToggleDarkMode(false);
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
   const shellRef = useRef<HTMLDivElement>(null);
 
@@ -34,59 +29,11 @@ export const Shell = () => {
     useDevtoolsJotaiStoreOptions(),
   );
 
-  // const handleOnTabChange = (value: TabKeys) => setSelectedShellTab(value);
-  //   return (
-  //     <Tabs
-  //       keepMounted={false}
-  //       variant="default"
-  //       defaultValue={TabKeys.AtomViewer}
-  //       sx={shellStyles}
-  //       h={height}
-  //       mah={shellStyleDefaults.maxHeight}
-  //       ref={shellRef}
-  //       className="jotai-devtools-shell"
-  //       data-testid="jotai-devtools-shell"
-  //       id="jotai-devtools-shell"
-  //       value={selectedShellTab}
-  //       onTabChange={handleOnTabChange}
-  //     >
-  //       <ShellResizeBar shellRef={shellRef} />
-  //       <Header />
-  //       <ErrorBoundary>
-  //         <TabsHeader />
-  //         <Tabs.Panel
-  //           value={TabKeys.AtomViewer}
-  //           h="100%"
-  //           sx={{
-  //             overflow: 'hidden',
-  //             // Hide the overlap of this div's bg
-  //             borderBottomLeftRadius: '7px',
-  //             borderBottomRightRadius: '7px',
-  //           }}
-  //         >
-  //           <AtomViewer />
-  //         </Tabs.Panel>
-  //         <Tabs.Panel
-  //           value={TabKeys.TimeTravel}
-  //           h="100%"
-  //           sx={{
-  //             overflow: 'hidden',
-  //             // Hide the overlap of this div's bg
-  //             borderBottomLeftRadius: '7px',
-  //             borderBottomRightRadius: '7px',
-  //           }}
-  //         >
-  //           <TimeTravel />
-  //         </Tabs.Panel>
-  //       </ErrorBoundary>
-  //     </Tabs>
-  //   );
-  // };
-
   return (
+    <div className='dark:bg-slate-900'>
     <Tabs
       defaultValue={selectedTab}
-      className="flex w-full flex-col"
+      className="flex flex-col"
       style={{
         height: height,
         maxHeight: shellStyleDefaults.maxHeight,
@@ -96,67 +43,44 @@ export const Shell = () => {
       id="jotai-devtools-shell"
     >
       <ShellResizeBar shellRef={shellRef} />
-      <Header />
+      <Header 
+
+      />
       <ErrorBoundary>
-        {/* <TabsList className="flex border-b border-gray-300"> */}
-        <TabsList className="flex w-full justify-start">
-          <TabsTrigger
-            value="atom-viewer"
-            onClick={() => setSelectedTab('atom-viewer')}
-            className={cn(
-              'px-4 py-2 text-sm font-medium focus:outline-none',
-              selectedTab === 'atom-viewer'
-                ? 'text-black border-b-2 !border-black'
-                : 'text-gray-700',
-            )}
-          >
-            Atom Viewer
-          </TabsTrigger>
-          <TabsTrigger
-            value="time-travel"
-            onClick={() => setSelectedTab('time-travel')}
-            className={cn(
-              'px-4 py-2 text-sm font-medium focus:outline-none',
-              selectedTab === 'time-travel'
-                ? 'text-black border-b-2 !border-black'
-                : 'text-gray-700',
-            )}
-          >
-            Time Travel
-          </TabsTrigger>
-          <TabsTrigger
-            value="atom-graph"
-            onClick={() => setSelectedTab('atom-graph')}
-            className={cn(
-              'px-4 py-2 text-sm font-medium focus:outline-none',
-              selectedTab === 'atom-graph'
-                ? 'text-black border-b-2 !border-black'
-                : 'text-gray-700',
-            )}
-          >
-            Atom Graph
-          </TabsTrigger>
+        
+        <TabsList className=' flex justify-start bg-white border-b-2 border-gray-300 rounded-t-md rounded-b-none dark:bg-slate-800 dark:border-gray-400'>
+          {tabs.map((tab) => (
+            <TabsTrigger
+              key={tab.value}
+              value={tab.value}
+              onClick={() => setSelectedTab(tab.value)}
+              className={cn(
+                'flex items-center px-4 py-2 text-sm font-medium focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-700 border-b-2 border-gray-300 dark:border-gray-400',
+                selectedTab === tab.value
+                  ? 'text-black dark:text-gray-100 border-black dark:border-white'
+                  : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-white',
+                  'rounded-t-md rounded-b-none -mb-1',
+              )}
+            >
+              {tab.icon}
+              {tab.label}
+            </TabsTrigger>
+          ))}
         </TabsList>
         <div
           style={{
             height: '100%',
-            // height: 'calc(100% - 90px)',
-            overflow: 'auto',
-            borderBottomLeftRadius: '7px',
-            borderBottomRightRadius: '7px',
+            overflow: 'hidden',
           }}
         >
-          <TabsContent value="atom-viewer" className="h-full">
-            <AtomViewer />
-          </TabsContent>
-          <TabsContent value="time-travel" className="h-full">
-            <TimeTravel />
-          </TabsContent>
-          <TabsContent value="atom-graph" className="h-full">
-            <ReactFlow />
-          </TabsContent>
+          {tabs.map((tab) => (
+            <TabsContent key={tab.value} value={tab.value} className="h-full">
+              {tab.content}
+            </TabsContent>
+          ))}
         </div>
       </ErrorBoundary>
     </Tabs>
+  </div>
   );
 };
