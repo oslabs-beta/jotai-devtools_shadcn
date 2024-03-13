@@ -84,7 +84,7 @@ function Reactflow() {
       return (
         <div style={{ width: '98%', height: '98%' }}>
             <ReactFlow
-              // fitView
+              fitView
               nodes={nodes}
               nodeTypes={nodeTypes}
               edges={edges}

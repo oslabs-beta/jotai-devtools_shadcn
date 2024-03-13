@@ -1,70 +1,20 @@
-// import * as React from 'react';
-// import { ActionIcon, Badge, Box, Flex, Group, Sx, Title } from '@mantine/core';
-// import { IconMinus } from '@tabler/icons-react';
-// import { useSetAtom } from 'jotai/react';
-// import { isShellOpenAtom } from '../../../../../atoms/is-shell-open-atom';
-// import { useDevtoolsJotaiStoreOptions } from '../../../../../internal-jotai-store';
-// import { ThemeToggle } from './components/ThemeToggle';
 
-// const headerStyles: Sx = {
-//   position: 'sticky',
-//   top: 0,
-//   zIndex: 1,
-//   width: '100%',
-// };
-
-// const logoStyles: Sx = { userSelect: 'none' };
-
-// export const Header = React.memo(() => {
-//   const setIsShellOpen = useSetAtom(
-//     isShellOpenAtom,
-//     useDevtoolsJotaiStoreOptions(),
-//   );
-
-//   return (
-//     <Box sx={headerStyles}>
-//       <Flex justify="space-between" align="center" p={10}>
-//         <Group mr={10}>
-//           <Title size="h4" sx={logoStyles}>
-//             👻&nbsp;Jōtai DevTools
-//           </Title>
-//           <Badge color="orange" size="xs">
-//             Alpha
-//           </Badge>
-//         </Group>
-//         <Flex align="center">
-//           <ThemeToggle />
-
-//           <ActionIcon
-//             ml={10}
-//             title="Minimize panel"
-//             radius="md"
-//             onClick={() => setIsShellOpen(false)}
-//           >
-//             <IconMinus size={16} />
-//           </ActionIcon>
-//         </Flex>
-//       </Flex>
-//     </Box>
-//   );
-// });
-// Header.displayName = 'Header';
-
-import React, { useContext } from 'react';
+import React from 'react';
 import { useSetAtom } from 'jotai/react';
 import { isShellOpenAtom } from '../../../../../atoms/is-shell-open-atom';
 import { useDevtoolsJotaiStoreOptions } from '../../../../../internal-jotai-store';
-import { ThemeToggle } from './components/ThemeToggle';
-import { Sun, Moon } from 'lucide-react';
-import { useToggleDarkMode } from '../../../../../hooks/useDarkMode';
 import { Button } from '../../../../../../../components/ui/button';
 import { Badge } from '../../../../../../../components/ui/badge';
 import { IconMoonStars, IconSun } from '@tabler/icons-react';
-import { DarkModeContext } from '../../../../../../../components/ui/DarkModeContext';
+import { useDarkModeValue, useSetDarkMode } from '../../../../../atoms/dark-mode';
 
 export const Header = React.memo(() => {
-  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
-  // const [darkMode, toggleDarkMode] = useToggleDarkMode(false);
+  const darkMode = useDarkModeValue();
+  const setDarkMode = useSetDarkMode();
+
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
   const setIsShellOpen = useSetAtom(
     isShellOpenAtom,
     useDevtoolsJotaiStoreOptions(),
@@ -86,12 +36,12 @@ export const Header = React.memo(() => {
                 toggleDarkMode();
               }}
               title="Toggle color scheme"
-              className="h-8 w-8 p-0"
+              className="h-7 w-7 p-0 hover:bg-slate-500 bg-slate-600 rounded-md"
             >
               {darkMode ? (
-                <IconSun className="h-5 w-5 dark:text-white" />
+                <IconSun className="h-5 w-5 dark:text-white  rounded-md" />
               ) : (
-                <IconMoonStars className="h-5 w-5" />
+                <IconMoonStars className="h-5 w-5 text-white" />
               )}
             </Button>
             <Button
