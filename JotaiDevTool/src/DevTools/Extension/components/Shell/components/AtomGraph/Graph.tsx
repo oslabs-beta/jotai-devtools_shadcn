@@ -4,7 +4,9 @@ import ReactFlow, {
   useEdgesState, 
   addEdge, 
   Controls,
-  Background, 
+  Background,
+  Connection,
+  Edge, 
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import 'reactflow/dist/base.css';
@@ -26,6 +28,9 @@ const nodeTypes = {
   custom: CustomNode,
 };
 
+
+
+
 function Reactflow() {
   useSyncSnapshotValuesToAtom();
   
@@ -42,28 +47,41 @@ function Reactflow() {
       valuesRef.current = values;
     }, [values]);
     
-    let atomNodes = () => {
-        const nodesArray = [];
-        // values.map iterates through all the atoms in the application to create a node
-        values.map(([atom], i) => {
-            const atomKey = atom.toString();
-            nodesArray.push(
-                {
-                    id: `atom-list-item-${atomKey + i}`,
-                    type: 'custom',
-                    // x and y position creates a grid layout based on index of the atom in values
-                    position: {
-                      x: i % 10 * 125,
-                      y: Math.floor(i/10) * 125,
-                    },
+    type nodeObj = {
+      id: string;
+      type: string;
+      position: { x: number, y: number };
+      data: { label: string; };
+    }
+    
+    let atomNodes = (): nodeObj[] => {
+      const nodesArray: nodeObj[] = [];
+      // values.map iterates through all the atoms in the application to create a node
+      values.map(([atom], i) => {
+        const atomKey = atom.toString();
+        nodesArray.push(
+          {
+            id: `atom-list-item-${atomKey + i}`,
+            type: 'custom',
+            // x and y position creates a grid layout based on index of the atom in values
+            position: {
+              x: i % 10 * 125,
+              y: Math.floor(i/10) * 125,
+            },
                     data: { label: atomToPrintable(atom) }
                   });
 
               })
               return nodesArray;
             };
+
+    type edgeObj = {
+      id: string;
+      source: string;
+      target: string;
+    }        
     
-    const initialEdges = [
+    const initialEdges: Edge<edgeObj>[] = [
       // { id: 'e1-2', source: '1', target: '2' },
       // { id: 'el1-3', source:'1', target: '3'}
     ];
