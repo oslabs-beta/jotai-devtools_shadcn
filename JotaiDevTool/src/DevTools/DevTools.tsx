@@ -20,8 +20,6 @@ import {
 import { fontCss } from './fonts';
 import { InternalDevToolsContext } from './internal-jotai-store';
 import { createMemoizedEmotionCache } from './utils';
-import { DarkModeContext, DarkModeProvider } from "../../components/ui/DarkModeContext"
-import DarkModeWrapper from "../../components/ui/DarkModeWrapper"
 
 export type DevToolsProps = ExtensionProps & {
   theme?: 'dark' | 'light';
@@ -115,9 +113,7 @@ const DevToolsMain = ({
           emotionCache={jotaiDevtoolsEmotionCache.current}
         >
           <Global styles={fontCss} />
-          <DarkModeWrapper>
           <Extension store={store} isInitialOpen={isInitialOpen} />
-          </DarkModeWrapper>
         </MantineProvider>
       </ColorSchemeProvider>
     </React.StrictMode>
@@ -142,9 +138,7 @@ export const InternalDevTools = (props: DevToolsProps): JSX.Element | null => {
   if (__DEV__) {
     return (
       <DevToolsProvider>
-        <DarkModeProvider>
         <DevToolsMain {...props} />
-        </DarkModeProvider>
       </DevToolsProvider>
     );
   }
