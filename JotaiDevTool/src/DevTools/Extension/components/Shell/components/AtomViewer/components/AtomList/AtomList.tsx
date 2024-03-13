@@ -282,6 +282,15 @@
 // };
 
 
+// // const searchInputWrapperStyles: Sx = {
+// //   position: 'sticky',
+// //   top: 0,
+// //   zIndex: 10,
+// //   background: 'white',
+// //   paddingTop: 10,
+// //   paddingBottom: 10,
+// // };
+
 //---- full migration -----
 
 import '../../../../../../../../../app/globals.css';
@@ -309,25 +318,26 @@ const SearchAtoms = React.memo(() => {
     } = event;
     setUserInput(value);
   };
-  const [darkMode, toggleDarkMode] = useToggleDarkMode(false);
+
 
   return (
-    <div className={`${darkMode ? "dark" : ""}`}>
-    <div className="sticky top-0 z-10 bg-white dark:bg-slate-700 dark:text-gray-200 py-4">
-      <Label htmlFor="search">Search</Label>
-      <Input
-        id="search"
-        placeholder="atom debug label"
-        value={userInput}
-        onChange={handleOnChange}
-        className="focus:border dark:bg-slate-500 dark:text-gray-300 dark:focus:border-white"
-      />
-    </div>
+    <div className="sticky top-0 z-10 bg-gray-200 dark:bg-slate-700 dark:text-gray-200 rounded rounded-b-none">
+      <div className="py-2.5 px-4">
+        <Label htmlFor="search">Search</Label>
+        <Input
+          id="search"
+          placeholder="atom debug label"
+          value={userInput}
+          onChange={handleOnChange}
+          className="focus:border dark:bg-slate-500 dark:focus:border-white dark:placeholder-gray-300 placeholder-gray-300 "
+        />
+      </div>
     </div>
   );
 });
 
-const atomItemsWrapperStyle = "overflow-auto box-border dark:bg-slate-700 dark:text-gray-200";
+
+const atomItemsWrapperStyle = "overflow-auto box-border bg-gray-200 dark:bg-slate-700 dark:text-gray-200 rounded rounded-t-none";
 
 export const AtomList = () => {
   useSyncSnapshotValuesToAtom();
@@ -382,10 +392,8 @@ export const AtomList = () => {
   );
 
   const noResultsFound = !values.length;
-  const [darkMode, toggleDarkMode] = useToggleDarkMode(false);
 
   return (
-    <div className={`${darkMode ? "dark" : ""}`}>
     <>
       <SearchAtoms />
       <div className={atomItemsWrapperStyle}>{atomItems}</div>
@@ -399,6 +407,5 @@ export const AtomList = () => {
         
       )}
     </>
-    </div>
   );
 };

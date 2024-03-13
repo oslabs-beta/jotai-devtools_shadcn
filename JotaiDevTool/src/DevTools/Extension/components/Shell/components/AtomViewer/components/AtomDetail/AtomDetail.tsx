@@ -95,8 +95,8 @@ export const AtomDetail = React.memo((): JSX.Element => {
 
   if (!selectedAtomData) {
     return (
-      <div className="flex flex-col items-center justify-center h-full mt-50%">
-      <p className="text-center">
+      <div className="flex flex-col items-center justify-center h-full mt-20">
+      <p className="text-center dark:text-gray-200">
         Select an atom from the left panel to view the details{' '}
       </p>
     </div>

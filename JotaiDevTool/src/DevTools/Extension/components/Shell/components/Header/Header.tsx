@@ -77,7 +77,7 @@ export const Header = React.memo(() => {
             <h1 className="text-xl font-semibold select-none dark:text-white">
               👻&nbsp;Jōtai DevTools
             </h1>
-            <Badge variant="secondary">Alpha</Badge>
+            <Badge variant="secondary" className='bg-orange-50 hover:bg-orange-50 text-orange-400'>Alpha</Badge>
           </div>
           <div className="flex items-center space-x-2">
             <Button

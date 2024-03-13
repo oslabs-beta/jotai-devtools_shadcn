@@ -19,7 +19,7 @@ export const DarkModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     };
 
     handleDarkModeChange();
-
+    // Cleanup function
     return () => {
       root.classList.remove(darkMode ? 'dark' : 'light');
     };
