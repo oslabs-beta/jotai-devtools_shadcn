@@ -44,24 +44,24 @@ export const SnapshotListNavigation = () => {
   return (
     <div className="flex space-x-2">
       <Button
-        variant={useThemeMode('outline', 'ghost')}
         aria-label="Select previous snapshot"
         title="Select previous snapshot"
         disabled={!prev.isPossible}
         onClick={prev.onClick}
-        className="h-8 w-8 p-0"
+        // className="group h-8 w-8 p-0 dark:bg-slate-700 dark:hover:bg-slate-600"
+        className="h-8 w-8 p-0 bg-gray-500 hover:bg-gray-400 dark:bg-slate-700 dark:hover:bg-slate-600 focus:bg-gray-500"
       >
-        <IconChevronUp className="h-4 w-4" />
+        {/* <IconChevronUp className="h-4 w-4 dark:text-white group-hover:text-white" /> */}
+        <IconChevronUp className="h-4 w-4 dark:text-white group-hover:text-white" />
       </Button>
       <Button
-        variant={useThemeMode('outline', 'ghost')}
         aria-label="Select next snapshot"
         title="Select next snapshot"
         disabled={!next.isPossible}
         onClick={next.onClick}
-        className="h-8 w-8 p-0"
+        className="h-8 w-8 p-0 bg-gray-500 hover:bg-gray-400 dark:bg-slate-700 dark:hover:bg-slate-600 focus:bg-gray-500"
       >
-        <IconChevronDown className="h-4 w-4" />
+        <IconChevronDown className="h-4 w-4 dark:text-white group-hover:text-white" />
       </Button>
     </div>
   );

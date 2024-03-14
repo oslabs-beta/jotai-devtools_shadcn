@@ -40,7 +40,7 @@ type DisplaySnapshotDetailsProps = {
 
 export const DisplaySnapshotDetails = (props: DisplaySnapshotDetailsProps) => {
   return (
-    <div className="column h-auto dark:text-gray-300">
+    <div className="column h-auto space-y-4 dark:text-gray-300">
       <h3 className='flex justify-center font-bold text-2xl mb-8'>
         Snapshot {props.details.label}
       </h3>

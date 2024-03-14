@@ -295,7 +295,7 @@ import {
   useTimeTravelNavigateActions,
 } from '../atoms';
 import { PlaybackSpeedDropdown } from './PlaybackSpeedDropdown';
-import { Slider } from '../../../../../../../../components/ui/slider';
+import { Slider,} from '../../../../../../../../components/ui/slider';
 import { Button } from '../../../../../../../../components/ui/button';
 
 export const PlayBar = () => {
@@ -318,22 +318,23 @@ export const PlayBar = () => {
         disabled={isDisabled}
         onClick={onTimeTravelToggle}
         title={isTimeTraveling ? 'Pause time travel' : 'Start time travel'}
-        className="w-8 h-8 p-0 dark:bg-slate-300"
+        className="w-8 h-8 p-0 dark:bg-slate-400"
       >
         {isTimeTraveling ? (
-          <IconPlayerPauseFilled className="w-4 h-4 dark:bg-slate-300" />
+          <IconPlayerPauseFilled className="w-4 h-4 dark:bg-slate-400" />
         ) : (
-          <IconPlayerPlayFilled className="w-4 h-4 dark:bg-slate-300" />
+          <IconPlayerPlayFilled className="w-4 h-4 dark:bg-slate-400" />
         )}
       </Button>
       <Slider
-        value={[value]}
-        onValueChange={() => handleOnSliderChange}
-        max={max}
-        disabled={isDisabled}
-        step={step}
-        className="flex-grow dark:bg-slate-500"
-      />
+  value={[value]}
+  onValueChange={() => handleOnSliderChange}
+  max={max}
+  disabled={isDisabled}
+  step={step}
+  className="flex-grow "
+/>
+
       <div className="flex gap-2">
         <Button
           variant={useThemeMode('outline', 'ghost')}
@@ -341,9 +342,9 @@ export const PlayBar = () => {
           title="Restore previous snapshot"
           disabled={isDisabled || isTimeTraveling || !prev.isPossible}
           onClick={prev.onClick}
-          className="w-8 h-8 p-0 dark:bg-slate-300"
+          className="w-8 h-8 p-0 dark:bg-slate-400"
         >
-          <IconChevronLeft className="w-4 h-4 dark:bg-slate-300" />
+          <IconChevronLeft className="w-4 h-4 dark:bg-slate-400" />
         </Button>
         <Button
           variant={useThemeMode('outline', 'ghost')}
@@ -351,9 +352,9 @@ export const PlayBar = () => {
           title="Restore next snapshot"
           disabled={isDisabled || isTimeTraveling || !next.isPossible}
           onClick={next.onClick}
-          className="w-8 h-8 p-0 dark:bg-slate-300"
+          className="w-8 h-8 p-0 dark:bg-slate-400"
         >
-          <IconChevronRight className="w-4 h-4 dark:bg-slate-300" />
+          <IconChevronRight className="w-4 h-4 dark:bg-slate-400" />
         </Button>
       </div>
       <PlaybackSpeedDropdown />

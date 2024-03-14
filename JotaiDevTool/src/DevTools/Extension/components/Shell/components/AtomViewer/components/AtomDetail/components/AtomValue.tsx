@@ -104,7 +104,8 @@
 //----Migrated Code -----
 
 
-import React, { useCallback } from 'react';
+
+import React, { useCallback, useState } from 'react';
 import { IconBinaryTree2, IconSourceCode } from '@tabler/icons-react';
 import { AnyAtomValue } from 'src/types';
 import {
@@ -117,7 +118,6 @@ import { JSONTree } from '../../../../JSONTree';
 import { AtomValueViewer, useAtomValueViewer } from '../atoms';
 import { MemoizedValueRenderer } from './MemoizedValueRenderer';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../../../../../../../../components/ui/tabs';
-import { Card, CardContent, CardHeader, CardTitle } from '../../../../../../../../../../components/ui/card';
 import { cn } from '../../../../../../../../../../lib/utils';
 
 type AtomParseRawValueValueProps = {
@@ -133,6 +133,7 @@ const supportedTreeValueTypes: ReturnType<typeof getTypeOfAtomValue>[] = [
 export const AtomValue = ({
   atomValue,
 }: AtomParseRawValueValueProps): JSX.Element => {
+  const [selectedTab, setSelectedTab] = useState('raw-value');
   const [atomValueViewer, setSelectedValueViewer] = useAtomValueViewer();
   const parsedValue = stringifyAtomValue(atomValue);
 
@@ -147,14 +148,12 @@ export const AtomValue = ({
 
   if (parsedValue === ErrorSymbol) {
     return (
-      <Card>
-        <CardHeader>
-          <CardTitle>Raw value</CardTitle>
-        </CardHeader>
-        <CardContent>
+      <div className="space-y-4 md:m-6 dark:bg-slate-900">
+        <h2 className='font-bold font-inter text-grey-900 dark:text-gray-200'>
+          Raw value
+        </h2>
           <ErrorMessage message="Failed to parse the value of the atom" />
-        </CardContent>
-      </Card>
+      </div>
     );
   }
 
@@ -163,30 +162,51 @@ export const AtomValue = ({
 
   if (!isJsonTreeCompatible) {
     return (
-      <Card>
-        <CardHeader>
-          <CardTitle>Raw value</CardTitle>
-        </CardHeader>
-        <CardContent>
+      <div className="space-y-4 md:m-6 dark:bg-slate-900">
+        <h2 className='font-bold font-inter text-grey-900 dark:text-gray-200'>
+          Raw value
+        </h2>
           <MemoizedValueRenderer value={parsedValue}/>
-        </CardContent>
-      </Card>
+      </div>
     );
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Value</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Tabs defaultValue="raw-value" value={atomValueViewer} onValueChange={handleOnTabChange}>
-          <TabsList>
-            <TabsTrigger value="raw-value">
+    <div className="space-y-4 md:m-6 dark:bg-slate-900">
+        <h2 className='font-bold font-inter text-grey-900 dark:text-gray-200'>
+          Value
+        </h2>
+        <Tabs 
+          defaultValue="raw-value" 
+          className="flex flex-col"
+          value={atomValueViewer} 
+          onValueChange={handleOnTabChange}>
+          <TabsList className="flex justify-start bg-white border-b-2 border-gray-300 rounded-t-md rounded-b-none dark:bg-slate-800 dark:border-gray-400">
+            <TabsTrigger 
+              value="raw-value"
+              onClick={() => setSelectedTab('raw-value')}
+              className={cn(
+                'flex items-center px-4 py-2 text-sm font-medium focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-700 border-b-2 border-gray-300 dark:border-gray-400',
+                selectedTab === 'raw-value'
+                  ? 'text-black dark:text-gray-100 border-black dark:border-white'
+                  : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-white',
+                'rounded-t-md rounded-b-none -mb-1',
+              )}
+              >
               <IconSourceCode className="mr-2 h-3.5 w-3.5" />
               Raw value
             </TabsTrigger>
-            <TabsTrigger value="json-tree">
+            <TabsTrigger 
+              value="json-tree"
+              onClick={() => setSelectedTab('json-tree')}
+              className={cn(
+                'flex items-center px-4 py-2 text-sm font-medium focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-700 border-b-2 border-gray-300 dark:border-gray-400',
+                selectedTab === 'json-tree'
+                  ? 'text-black dark:text-gray-100 border-black dark:border-white'
+                  : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-white',
+                'rounded-t-md rounded-b-none -mb-1',
+              )}
+              >
               <IconBinaryTree2 className="mr-2 h-3.5 w-3.5" />
               Tree view
             </TabsTrigger>
@@ -198,7 +218,6 @@ export const AtomValue = ({
             <JSONTree data={atomValue} />
           </TabsContent>
         </Tabs>
-      </CardContent>
-    </Card>
+    </div>
   );
 };

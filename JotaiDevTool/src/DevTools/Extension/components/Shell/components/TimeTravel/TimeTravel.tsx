@@ -47,7 +47,7 @@ export const TimeTravel = React.memo(() => {
         >
           <ScrollArea.Root className="h-full">
             <ScrollArea.Viewport className="h-full">
-              <div className="p-10 h-full flex flex-col relative dark:text-white">
+              <div className="p-30 h-full flex flex-col relative dark:text-white">
                 <SnapshotDetail />
               </div>
             </ScrollArea.Viewport>

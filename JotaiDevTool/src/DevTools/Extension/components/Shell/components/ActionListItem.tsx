@@ -79,7 +79,7 @@ export const ActionListItem = React.memo(
           variant={isActive ? 'secondary' : 'ghost'}
           size="sm"
           onClick={handleOnClick}
-          className={`w-full justify-between font-mono focus:bg-slate-700 focus:text-gray-200 dark:focus:bg-gray-500 dark:hover:bg-slate-800 hover:bg-gray-300${
+          className={`w-full justify-between font-mono focus:bg-slate-700 focus:text-gray-200 dark:focus:bg-slate-900 dark:hover:bg-slate-800 hover:bg-gray-300${
             isActive ? 'bg-muted text-primary' : ''
           }`}
         >

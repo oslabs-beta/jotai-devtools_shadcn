@@ -60,8 +60,8 @@ export const RecordHistory = () => {
             aria-label={label}
             className={`h-8 w-8 p-0 ${useThemeMode(
               shouldRecord
-                ? 'text-red-700 border-red-700 hover:text-red-700 hover:bg-white'
-                : 'text-gray-900 border-gray-300',
+                ? 'text-red-700 border-red-700 hover:text-red-700 hover:bg-white dark:hover:bg-slate-600 dark:bg-slate-700'
+                : 'text-gray-900 border-gray-300 bg-slate-500',
               shouldRecord
                 ? 'text-gray-400 border-gray-700'
                 : 'text-red-700 border-red-700',

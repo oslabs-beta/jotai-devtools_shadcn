@@ -76,14 +76,13 @@ export const ClearHistory = () => {
 
   return (
     <Button
-      variant={useThemeMode('outline', 'ghost')}
       aria-label="Clear snapshot history"
       title="Clear snapshot history"
       onClick={handleOnClick}
       disabled={filteredSnapshotHistory.length === 0}
-      className="h-8 w-8 p-0"
+      className="h-8 w-8 p-0 bg-gray-500 hover:bg-gray-400 dark:bg-slate-700 dark:hover:bg-slate-600 focus:bg-gray-500"
     >
-      <IconTrashX className="h-4 w-4" />
+      <IconTrashX className="h-4 w-4 dark:text-white group-hover:text-white" />
     </Button>
   );
 };
