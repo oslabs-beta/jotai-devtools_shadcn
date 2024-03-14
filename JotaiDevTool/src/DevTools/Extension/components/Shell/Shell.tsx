@@ -29,7 +29,7 @@ export const Shell = () => {
       <div className='fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-slate-900'>
       <Tabs
         defaultValue={selectedTab}
-        className="flex flex-col"
+        className="flex flex-col mx-2"
         style={{
           height: height,
           maxHeight: shellStyleDefaults.maxHeight,
@@ -44,7 +44,7 @@ export const Shell = () => {
         />
         <ErrorBoundary>
           
-          <TabsList className=' flex justify-start bg-white border-b-2 border-gray-300 rounded-t-md rounded-b-none dark:bg-slate-800 dark:border-gray-400'>
+          <TabsList className='flex justify-start bg-white border-b-2 border-gray-300 rounded-t-md rounded-b-none dark:bg-slate-800 dark:border-gray-400 '>
             {tabs.map((tab) => (
               <TabsTrigger
                 key={tab.value}
@@ -52,10 +52,13 @@ export const Shell = () => {
                 onClick={() => setSelectedTab(tab.value)}
                 className={cn(
                   'flex items-center px-4 py-2 text-sm font-medium focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-700 border-b-2 border-gray-300 dark:border-gray-400',
+                  'rounded-t-md rounded-b-none -mb-1',
+                  tab.value === 'atom-viewer' && '-ml-1',
                   selectedTab === tab.value
-                    ? 'text-black dark:text-gray-100 border-black dark:border-white'
-                    : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-white',
-                    'rounded-t-md rounded-b-none -mb-1',
+                    ? tab.value === 'atom-viewer'
+                      ? 'text-black dark:text-gray-100 border-black dark:border-white dark:focus:!bg-slate-900'
+                      : 'text-black dark:text-gray-100 border-black dark:border-white dark:focus:!bg-slate-900'
+                    : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-white'
                 )}
               >
                 {tab.icon}

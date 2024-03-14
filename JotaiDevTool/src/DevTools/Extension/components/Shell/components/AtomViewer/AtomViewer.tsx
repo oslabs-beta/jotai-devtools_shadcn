@@ -51,7 +51,7 @@ export const AtomViewer = React.memo(() => {
     <div className="flex flex-row h-full">
       <ScrollArea.Root className="w-1/2 h-full">
         <ScrollArea.Viewport className="h-full">
-          <div className="px-4 pb-4 h-full flex flex-col border-r border-gray-400">
+          <div className=" pb-4 h-full flex flex-col border-r border-gray-400">
             <AtomList />
           </div>
         </ScrollArea.Viewport>

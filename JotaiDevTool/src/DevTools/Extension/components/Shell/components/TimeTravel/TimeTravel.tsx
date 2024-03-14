@@ -25,7 +25,7 @@ export const TimeTravel = React.memo(() => {
         >
           <ScrollArea.Root className="h-full">
             <ScrollArea.Viewport className="h-full">
-              <div className=" p-4 pt-0 h-full flex flex-col data-[testid='jotai-devtools-time-travel-panel-left-content'] dark:text-white dark:bg-slate-700 ml-4 rounded-md bg-gray-200">
+              <div className=" p-4 pt-0 h-full flex flex-col data-[testid='jotai-devtools-time-travel-panel-left-content'] dark:text-white dark:bg-slate-700 rounded-md bg-gray-200">
                 <SnapshotList />
               </div>
             </ScrollArea.Viewport>

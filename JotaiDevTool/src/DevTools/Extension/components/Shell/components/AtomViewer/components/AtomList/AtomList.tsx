@@ -26,8 +26,8 @@ const SearchAtoms = React.memo(() => {
 
 
   return (
-    <div className="sticky top-0 z-10 bg-gray-200 dark:bg-slate-700 dark:text-gray-200 rounded rounded-b-none">
-      <div className="py-2.5 px-4">
+    <div className="sticky top-0 bg-gray-200 dark:bg-slate-700 dark:text-gray-200 rounded rounded-b-none">
+      <div className="py-2.5 px-4 pt-5">
         <Label htmlFor="search">Search</Label>
         <Input
           id="search"
