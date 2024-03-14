@@ -2,7 +2,7 @@
 import React from 'react';
 import { AtomViewer } from './components/AtomViewer';
 import { TimeTravel } from './components/TimeTravel';
-import  ReactFlow  from './components/AtomGraph/Graph';
+import  ReactFlow  from './components/AtomGraph/AtomGraph';
 
 export const tabs = [
   {

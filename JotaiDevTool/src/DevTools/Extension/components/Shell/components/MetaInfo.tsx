@@ -1,30 +1,28 @@
 import React from 'react';
-import { Box, Code, CodeProps, DefaultMantineColor, Text } from '@mantine/core';
 
-type MetaInfoProps = Pick<CodeProps, 'color'> & {
+
+type MetaInfoProps = {
   label: string;
   value: string;
+  className?: string;
+  color?: string;
 };
 
-export const MetaInfo = ({ label, value, color }: MetaInfoProps) => {
+export const MetaInfo = ({ label, value, className }: MetaInfoProps) => {
   return (
-    <Box mb={10}>
-      <Text
-        tt="uppercase"
-        fz={10}
-        fw="bold"
-        color="dimmed"
+    <div className={`mb-4 ${className}`}>
+      <p
+        className="text-xs uppercase font-bold text-muted-foreground"
         data-testid={`meta-info-label-${label}`}
       >
         {label}
-      </Text>
-      <Code
+      </p>
+      <code
+        className="text-sm font-mono text-foreground bg-gray-100 dark:bg-slate-600 px-2 py-1 rounded"
         data-testid={`meta-info-value-${value}`}
-        // Intentional disable, eslint doesn't like it otherwise due to "exactOptionalPropertyTypes"
-        color={color as DefaultMantineColor}
       >
         {value}
-      </Code>
-    </Box>
+      </code>
+    </div>
   );
 };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Flex, Sx } from '@mantine/core';
+import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { Panel, PanelGroup } from 'react-resizable-panels';
 import { PanelResizeHandle } from '../PanelResizeHandle';
 import { PlayBar } from './components/PlayBar';
@@ -7,13 +7,7 @@ import { SnapshotDetail } from './components/SnapshotDetail';
 import { SnapshotList } from './components/SnapshotList';
 
 const panelStyles = { overflow: 'auto' };
-
-// 56px is the height of the playbar
 const panelGroupStyles = { height: 'calc(100% - 56px)' };
-const atomListWrapperStyles: Sx = (theme) => ({
-  background:
-    theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[2],
-});
 
 export const TimeTravel = React.memo(() => {
   return (
@@ -29,16 +23,20 @@ export const TimeTravel = React.memo(() => {
           style={panelStyles}
           id="jotai-devtools-time-travel-panel-left"
         >
-          <Flex
-            p={10}
-            pt={0}
-            h="100%"
-            direction="column"
-            sx={atomListWrapperStyles}
-            data-testid="jotai-devtools-time-travel-panel-left-content"
-          >
-            <SnapshotList />
-          </Flex>
+          <ScrollArea.Root className="h-full">
+            <ScrollArea.Viewport className="h-full">
+              <div className=" p-4 pt-0 h-full flex flex-col data-[testid='jotai-devtools-time-travel-panel-left-content'] dark:text-white dark:bg-slate-700 ml-4 rounded-md bg-gray-200">
+                <SnapshotList />
+              </div>
+            </ScrollArea.Viewport>
+            <ScrollArea.Scrollbar
+              orientation="vertical"
+              className="bg-gray-200 dark:bg-gray-700 w-2.5 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-150"
+            >
+              <ScrollArea.Thumb className="bg-gray-400 dark:bg-gray-500 rounded-full" />
+            </ScrollArea.Scrollbar>
+            <ScrollArea.Corner className="bg-gray-200 dark:bg-gray-700" />
+          </ScrollArea.Root>
         </Panel>
         <PanelResizeHandle />
         <Panel
@@ -47,9 +45,20 @@ export const TimeTravel = React.memo(() => {
           style={panelStyles}
           id="jotai-devtools-time-travel-panel-right"
         >
-          <Flex p={10} h="100%" direction="column" pos="relative">
-            <SnapshotDetail />
-          </Flex>
+          <ScrollArea.Root className="h-full">
+            <ScrollArea.Viewport className="h-full">
+              <div className="p-10 h-full flex flex-col relative dark:text-white">
+                <SnapshotDetail />
+              </div>
+            </ScrollArea.Viewport>
+            <ScrollArea.Scrollbar
+              orientation="vertical"
+              className="bg-gray-200 dark:bg-gray-700 w-2.5 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-150"
+            >
+              <ScrollArea.Thumb className="bg-gray-400 dark:bg-gray-500 rounded-full" />
+            </ScrollArea.Scrollbar>
+            <ScrollArea.Corner className="bg-gray-200 dark:bg-gray-700" />
+          </ScrollArea.Root>
         </Panel>
       </PanelGroup>
       <PlayBar />

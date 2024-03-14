@@ -1,17 +1,32 @@
 import React, { memo } from 'react';
 import { Background, Handle, Position } from 'reactflow';
+import { useDarkModeValue } from '../../../../../atoms/dark-mode';
 
-function CustomNode({ data }) {
+type CustomNodeData = {
+  label: string;
+  //possibility of adding additional relevant information to the node
+  value?: string;
+  valueType?: string;
+  dependents?: string;
+};
+
+type CustomNodeProps = {
+  data: CustomNodeData;
+};
+
+function CustomNode({ data }: CustomNodeProps) {
+  const darkMode = useDarkModeValue();
+
   return (
-    <div>
+    <div className={darkMode ? 'dark' : ''}>
         <div className="CustomNode" style={{
-          color: "#F5F5F5",
+          color: darkMode ? "#000000": "#F5F5F5",
           fontSize: "1em",
           textAlign: "center",
           textOverflow: "ellipsis",
           overflow: "hidden",
           wordBreak: "break-all",
-          backgroundColor: '#252B37',
+          backgroundColor: darkMode ? "#E4F0FB": '#252B37',
           //circle: 50%, squoval: 40%
           borderRadius: "50%",
           width: "6em",

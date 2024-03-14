@@ -1,42 +1,29 @@
 import React from 'react';
-import { Box, Sx } from '@mantine/core';
+import { cn } from '../../../../../../lib/utils';
 import { PanelResizeHandle as ReactPanelResizeHandle } from 'react-resizable-panels';
 import { useThemeMode } from '../../../../hooks/useThemeMode';
 
-const reactPanelResizeHandleStyles = {
-  display: 'flex',
-  alignItems: 'center',
-  '._jotai-devtools-internal-panel-resize-handle': {
-    transition: 'max-height, min-height, height, 0.2s ease-out',
-  },
-  '[data-resize-handle-active] &, &:hover': {
-    '._jotai-devtools-internal-panel-resize-handle': {
-      height: '90%',
-      minHeight: '90%',
-      maxHeight: '90%',
-    },
-  },
-};
-const innerContainerStyles: Sx = {
-  borderRadius: '2rem',
-  verticalAlign: 'middle',
-};
+const reactPanelResizeHandleStyles = cn(
+  'flex items-center',
+  '[&_.jotai-devtools-internal-panel-resize-handle]:transition-[max-height,min-height,height] [&_.jotai-devtools-internal-panel-resize-handle]:duration-200 [&_.jotai-devtools-internal-panel-resize-handle]:ease-out',
+  '[&[data-resize-handle-active]_.jotai-devtools-internal-panel-resize-handle]:h-[90%] [&[data-resize-handle-active]_.jotai-devtools-internal-panel-resize-handle]:min-h-[90%] [&[data-resize-handle-active]_.jotai-devtools-internal-panel-resize-handle]:max-h-[90%]',
+  '[&:hover_.jotai-devtools-internal-panel-resize-handle]:h-[90%] [&:hover_.jotai-devtools-internal-panel-resize-handle]:min-h-[90%] [&:hover_.jotai-devtools-internal-panel-resize-handle]:max-h-[90%]'
+);
+
+const innerContainerStyles = cn('rounded-[2rem] align-middle');
 
 export const PanelResizeHandle = () => {
   return (
     <ReactPanelResizeHandle id="jotai-devtools-panel-resize-handle">
-      <Box p="5" h="100%" sx={reactPanelResizeHandleStyles}>
-        <Box
-          className="_jotai-devtools-internal-panel-resize-handle"
-          mah={100}
-          mih={50}
-          h="20%"
-          w={5}
-          m={5}
-          bg={useThemeMode('gray.3', 'gray.7')}
-          sx={innerContainerStyles}
+      <div className={cn(' h-full', reactPanelResizeHandleStyles)}>
+        <div
+          className={cn(
+            'jotai-devtools-internal-panel-resize-handle max-h-25 min-h-12 h-[20%] w-1.5 m-1 dark:bg-gray-400',
+            useThemeMode('bg-gray-200', 'bg-gray-700'),
+            innerContainerStyles
+          )}
         />
-      </Box>
+      </div>
     </ReactPanelResizeHandle>
   );
 };

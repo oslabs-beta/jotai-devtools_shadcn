@@ -26,7 +26,7 @@ export const Shell = () => {
 
   return (
     <div className={darkMode ? 'dark' : ''}>
-      <div className='dark:bg-slate-900'>
+      <div className='fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-slate-900'>
       <Tabs
         defaultValue={selectedTab}
         className="flex flex-col"

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Stack, Title } from '@mantine/core';
 import { AnyAtom } from 'src/types';
 import {
   atomToPrintable,
@@ -19,8 +18,8 @@ export const DisplayAtomDetails = ({ atom }: DisplayAtomDetailsProps) => {
   const atomValueType = getTypeOfAtomValue(atomValue);
 
   return (
-    <Stack h="auto">
-      <Title size="h3" className='dark:text-gray-200'>Atom Details</Title>
+    <div className='column h-auto dark:text-gray-300'>
+      <h3 className='flex justify-center font-bold text-2xl mb-8'>Atom Details</h3>
       <AtomMetaDetails
         debugLabel={atomToPrintable(atom)}
         atomValueType={atomValueType}
@@ -32,6 +31,6 @@ export const DisplayAtomDetails = ({ atom }: DisplayAtomDetailsProps) => {
       {/* TODO add dependencies list */}
 
       <AtomDependentsList atom={atom} />
-    </Stack>
+    </div>
   );
 };

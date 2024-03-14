@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box, Title } from '@mantine/core';
 import { MetaInfo } from '../../../../../../MetaInfo';
+
+
 
 type SnapshotMetaDetailsProps = {
   timestamp: string;
@@ -8,11 +9,11 @@ type SnapshotMetaDetailsProps = {
 
 export const SnapshotMetaDetails = (props: SnapshotMetaDetailsProps) => {
   return (
-    <Box>
-      <Title size="h5" mb={10}>
+    <div className="space-y-4">
+      <h2 className="flex justify-center text-l font-bold font-inter text-grey-900 dark:text-gray-200 leading-6">
         Meta
-      </Title>
+      </h2>
       <MetaInfo label="Timestamp" value={props.timestamp} />
-    </Box>
+    </div>
   );
 };

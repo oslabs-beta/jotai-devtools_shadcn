@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Box, Code, List, Text } from '@mantine/core';
 import { AnyAtom } from 'src/types';
 import { useAtomsSnapshots } from '../../../../../../../../hooks/useAtomsSnapshots';
 import { atomToPrintable } from '../../../../../../../../utils/';
+import { cn } from '../../../../../../../../../../lib/utils';
+
 
 type AtomDependentsListProps = {
   atom: AnyAtom;
@@ -27,30 +28,36 @@ export const AtomDependentsList = ({
       depsForAtom.map((atom, i) => {
         const parsedDebugLabel = atomToPrintable(atom);
         return (
-          <List.Item key={`${i}-${atom.toString()}-dependents-list`}>
-            <Code data-testid={`dependents-list-item-${parsedDebugLabel}-${i}`}>
+          <li 
+            key={`${i}-${atom.toString()}-dependents-list`}
+            className="mb-2 last:mb-0"
+          >
+            <code 
+            data-testid={`dependents-list-item-${parsedDebugLabel}-${i}`}
+            className={cn('text-sm font-mono text-foreground bg-gray-100 dark:bg-slate-600 px-2 py-1 rounded')}
+            >
               {parsedDebugLabel}
-            </Code>
-          </List.Item>
+            </code>
+          </li>
         );
       }),
     [depsForAtom],
   );
 
   return (
-    <Box>
-      <Text fw="bold" mb={10} mt={20}>
+    <div className='space-y-4 m-4 md:m-6'>
+      <h2 className='font-bold font-inter text-grey-900 dark:text-gray-200'>
         Dependents
-      </Text>
+      </h2>
       {listOfDependents.length ? (
-        <List type="ordered" mb={10}>
+        <ol className='list-decimal pl-4 space-y-2 text-gray-400 dark:text-gray-200'>
           {listOfDependents}
-        </List>
+        </ol>
       ) : (
-        <Text size="sm" mb={10}>
+        <p className='text-sm font-inter text-grey-900 dark:text-gray-200'>
           No dependents
-        </Text>
+        </p>
       )}
-    </Box>
+    </div>
   );
 };

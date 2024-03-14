@@ -21,7 +21,7 @@ export const Header = React.memo(() => {
   );
 
   return (
-      <header className="sticky top-0 z-10 w-full dark:bg-slate-800">
+      <header className="sticky top-0 z-10 w-full bg-white dark:bg-slate-800">
         <div className="flex items-center justify-between p-4">
           <div className="flex items-center space-x-2">
             <h1 className="text-xl font-semibold select-none dark:text-white">

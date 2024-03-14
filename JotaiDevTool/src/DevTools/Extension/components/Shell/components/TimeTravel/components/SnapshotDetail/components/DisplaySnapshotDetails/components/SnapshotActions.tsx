@@ -1,26 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Button, ButtonProps, Title } from '@mantine/core';
-import { useTimeout } from '@mantine/hooks';
+import React, { useState } from 'react';
 import { IconCircleCheck, IconRotate2 } from '@tabler/icons-react';
 import { AtomsSnapshot } from '../../../../../../../../../../../types';
 import { useGotoAtomsSnapshot } from '../../../../../../../../../../../utils';
 import { useUserStoreOptions } from '../../../../../../../../../../hooks/useUserStore';
 import { useIsTimeTravelingValue } from '../../../../../atoms';
-
-const commonStyles: ButtonProps['styles'] = {
-  leftIcon: {
-    marginRight: '0.325rem',
-  },
-};
-
-const rotateButtonStyles: ButtonProps['styles'] = {
-  ...commonStyles,
-  leftIcon: {
-    ...commonStyles.leftIcon,
-    // There isn't a suitable icon for "undo" in @tabler/icons, so we rotate it slightly to our needs
-    transform: 'rotate(130deg)',
-  },
-};
 
 type SnapshotActionsProps = {
   snapshotToGoTo: AtomsSnapshot;
@@ -31,40 +14,34 @@ export const SnapshotActions = (props: SnapshotActionsProps) => {
   const [justRestored, setJustRestored] = useState(false);
   const gotoSnapshot = useGotoAtomsSnapshot(useUserStoreOptions());
   const isTimeTraveling = useIsTimeTravelingValue();
-  const { start, clear } = useTimeout(() => setJustRestored(false), 1750);
-
-  useEffect(() => {
-    return clear;
-  }, [clear]);
 
   const handleOnRestoreClick = () => {
     setJustRestored(true);
-    start();
     gotoSnapshot(props.snapshotToGoTo);
   };
 
   return (
-    <Box>
-      <Title size="h5" mb={10}>
+    <div className="space-y-4">
+      <h2 className="flex justify-center text-l font-bold font-inter text-grey-900 dark:text-gray-200 leading-6">
         Actions
-      </Title>
-      <Button
+      </h2>
+      <button
         title="Restore this state"
         onClick={handleOnRestoreClick}
-        variant="default"
-        styles={justRestored ? commonStyles : rotateButtonStyles}
-        leftIcon={
-          justRestored ? (
-            <IconCircleCheck size="0.8rem" />
-          ) : (
-            <IconRotate2 size="0.8rem" />
-          )
-        }
         disabled={!props.isRestorable || isTimeTraveling || justRestored}
-        size="xs"
+        className={`flex items-center space-x-2 rounded-md px-3 py-2 text-sm font-medium ${
+          justRestored
+            ? 'bg-gray-300 text-grey-900 dark:bg-grey-600 dark:text-grey-100'
+            : 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600'
+        } ${!props.isRestorable || isTimeTraveling || justRestored ? 'opacity-50 cursor-not-allowed' : ''}`}
       >
-        {justRestored ? 'Restored' : 'Restore'}
-      </Button>
-    </Box>
+        {justRestored ? (
+          <IconCircleCheck size={16} />
+        ) : (
+          <IconRotate2 size={16} className="rotate-[130deg]" />
+        )}
+        <span>{justRestored ? 'Restored' : 'Restore'}</span>
+      </button>
+    </div>
   );
 };
