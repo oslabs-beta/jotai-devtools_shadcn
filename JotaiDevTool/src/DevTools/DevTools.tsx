@@ -112,7 +112,7 @@ const DevToolsMain = ({
           theme={theme}
           emotionCache={jotaiDevtoolsEmotionCache.current}
         >
-          <Global styles={fontCss} />
+           <Global styles={fontCss} /> 
           <Extension store={store} isInitialOpen={isInitialOpen} />
         </MantineProvider>
       </ColorSchemeProvider>

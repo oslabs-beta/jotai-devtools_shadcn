@@ -111,7 +111,7 @@ const customStore = createStore();
 export default function App() {
   return (
       <Provider store={customStore}>
-        <h1>Jōtai</h1>
+        <h1>Todo List</h1>
         <TodoList />
         <DevTools store={customStore} />
       </Provider>

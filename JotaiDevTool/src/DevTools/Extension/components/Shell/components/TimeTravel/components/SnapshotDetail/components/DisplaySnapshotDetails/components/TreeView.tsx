@@ -94,7 +94,7 @@ export const TreeView = (props: TreeViewProps) => {
   );
 
   if (props.diff === STATES_EQUAL_SYMBOL) {
-    return <Code>(states are equal)</Code>;
+    return <code className="inline-block px-2 py-1 text-sm font-mono bg-gray-100 dark:bg-gray-800 rounded">(states are equal)</code>;
   }
 
   return (

@@ -50,7 +50,7 @@ export const SnapshotValue = (props: SnapshotValueProps): JSX.Element => {
               value="state"
               onClick={() => setSelectedTab('state')}
               className={cn(
-                'flex items-center px-4 py-2 text-sm font-medium focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-700 border-b-2 border-gray-300 dark:border-gray-400',
+                'flex items-center px-4 py-2 text-sm font-medium focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-700 border-b-2 border-gray-300 dark:border-gray-400 -ml-1',
                 selectedTab === 'state'
                   ? 'text-black dark:text-gray-100 border-black dark:border-white'
                   : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-white',

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as ScrollArea from '@radix-ui/react-scroll-area';
+import { ScrollArea } from '../../../../../../../components/ui/scroll-area';
 import { Panel, PanelGroup } from 'react-resizable-panels';
 import { PanelResizeHandle } from '../PanelResizeHandle';
 import { PlayBar } from './components/PlayBar';
@@ -23,20 +23,11 @@ export const TimeTravel = React.memo(() => {
           style={panelStyles}
           id="jotai-devtools-time-travel-panel-left"
         >
-          <ScrollArea.Root className="h-full">
-            <ScrollArea.Viewport className="h-full">
-              <div className=" p-4 pt-0 h-full flex flex-col data-[testid='jotai-devtools-time-travel-panel-left-content'] dark:text-white dark:bg-slate-700 rounded-md bg-gray-200">
-                <SnapshotList />
-              </div>
-            </ScrollArea.Viewport>
-            <ScrollArea.Scrollbar
-              orientation="vertical"
-              className="bg-gray-200 dark:bg-gray-700 w-2.5 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-150"
-            >
-              <ScrollArea.Thumb className="bg-gray-400 dark:bg-gray-500 rounded-full" />
-            </ScrollArea.Scrollbar>
-            <ScrollArea.Corner className="bg-gray-200 dark:bg-gray-700" />
-          </ScrollArea.Root>
+          <ScrollArea className="h-full">
+            <div className="p-4 pt-0 h-full flex flex-col data-[testid='jotai-devtools-time-travel-panel-left-content'] dark:text-white dark:bg-slate-700 rounded-md bg-gray-200">
+              <SnapshotList />
+            </div>
+          </ScrollArea>
         </Panel>
         <PanelResizeHandle />
         <Panel
@@ -45,20 +36,11 @@ export const TimeTravel = React.memo(() => {
           style={panelStyles}
           id="jotai-devtools-time-travel-panel-right"
         >
-          <ScrollArea.Root className="h-full">
-            <ScrollArea.Viewport className="h-full">
-              <div className="p-30 h-full flex flex-col relative dark:text-white">
-                <SnapshotDetail />
-              </div>
-            </ScrollArea.Viewport>
-            <ScrollArea.Scrollbar
-              orientation="vertical"
-              className="bg-gray-200 dark:bg-gray-700 w-2.5 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-150"
-            >
-              <ScrollArea.Thumb className="bg-gray-400 dark:bg-gray-500 rounded-full" />
-            </ScrollArea.Scrollbar>
-            <ScrollArea.Corner className="bg-gray-200 dark:bg-gray-700" />
-          </ScrollArea.Root>
+          <ScrollArea className="h-full">
+            <div className="p-30 h-full flex flex-col relative dark:text-white">
+              <SnapshotDetail />
+            </div>
+          </ScrollArea>
         </Panel>
       </PanelGroup>
       <PlayBar />

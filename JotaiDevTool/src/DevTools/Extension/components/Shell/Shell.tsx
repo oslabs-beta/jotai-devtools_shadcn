@@ -55,9 +55,7 @@ export const Shell = () => {
                   'rounded-t-md rounded-b-none -mb-1',
                   tab.value === 'atom-viewer' && '-ml-1',
                   selectedTab === tab.value
-                    ? tab.value === 'atom-viewer'
-                      ? 'text-black dark:text-gray-100 border-black dark:border-white dark:focus:!bg-slate-900'
-                      : 'text-black dark:text-gray-100 border-black dark:border-white dark:focus:!bg-slate-900'
+                    ? 'text-black dark:text-gray-100 border-black dark:border-white dark:focus:!bg-slate-900'
                     : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-white'
                 )}
               >
