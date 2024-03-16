@@ -53,7 +53,7 @@ export const RecordHistory = () => {
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger>
+        <TooltipTrigger asChild>
           <Button
             variant="outline"
             onClick={handleOnClick}

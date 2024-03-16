@@ -181,7 +181,7 @@ export const AtomValue = ({
           className="flex flex-col"
           value={atomValueViewer} 
           onValueChange={handleOnTabChange}>
-          <TabsList className="flex justify-start bg-white border-b-2 border-gray-300 rounded-t-md rounded-b-none dark:bg-slate-800 dark:border-gray-400">
+          <TabsList className="h-10 flex justify-start bg-white border-b-2 border-gray-300 rounded-t-md rounded-b-none dark:bg-slate-800 dark:border-gray-400">
             <TabsTrigger 
               value="raw-value"
               onClick={() => setSelectedTab('raw-value')}
